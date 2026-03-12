@@ -47,9 +47,9 @@ With Redux for state management, MovieSphere efficiently handles **movies, pagin
 
 ![Desktop View](./screenshots/English%20&%20light%20mode.jpg)
 
-### 📱 Mobile View (Arabic & Dark Mode)
+### 💻 Desktop View (Arabic & Dark Mode)
 
-![Mobile View](./screenshots/Arabic%20&%20dark%20mode.jpg)
+![Desktop View](./screenshots/Arabic%20&%20dark%20mode.jpg)
 
 ### 🔍 Search Functionality
 
@@ -58,6 +58,10 @@ With Redux for state management, MovieSphere efficiently handles **movies, pagin
 ### 🌐 URL & Pagination Changes
 
 ![Pagination View](./screenshots/url%20and%20pagination.jpg)
+
+### 📱 Mobile View (Arabic & Dark Mode)
+
+![Mobile View](./screenshots/phone.png)
 
 ---
 
