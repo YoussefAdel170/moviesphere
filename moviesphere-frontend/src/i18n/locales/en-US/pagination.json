@@ -1,0 +1,6 @@
+{
+  "first_page": "First page",
+  "last_page": "Last page (page {{totalPages}})",
+  "next_page": "Next page",
+  "previous_page": "Previous page"
+}

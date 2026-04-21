@@ -1,0 +1,245 @@
+// src/components/ui/moviecard/MovieCard.scss
+
+.movie-card {
+  background: var(--surface-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+
+  &:hover,
+  a:focus-visible {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-primary);
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: 16px;
+  }
+
+  /* =========================
+     IMAGE
+  ========================= */
+  &__image {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+
+    img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  }
+
+  &:hover &__image img {
+    transform: scale(1.05);
+  }
+
+  /* =========================
+     RATING BADGE
+  ========================= */
+  &__overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+    color: #ffd966;
+
+    z-index: 2;
+  }
+
+  /* =========================
+     HOVER OVERLAY (DESKTOP ONLY)
+  ========================= */
+  &__hover-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.2),
+      transparent
+    );
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.98);
+
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    text-align: center;
+
+    .overlay-content {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      color: rgba(255, 255, 255, 0.9);
+
+      > * {
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+    }
+
+    .overview {
+      font-size: 0.8rem;
+      line-height: 1.4;
+
+      margin-bottom: 16px;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      color: rgba(255, 255, 255, 0.75);
+      font-style: italic;
+
+      -webkit-line-clamp: 8;
+    }
+
+    .genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+
+      span {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+
+        padding: 4px 10px;
+        border-radius: 999px;
+
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+  }
+
+  &:hover &__hover-overlay,
+  a:focus-visible &__hover-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+
+    .overlay-content > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .overlay-content > *:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .overlay-content > *:nth-child(2) {
+      transition-delay: 0.12s;
+    }
+  }
+
+  /* =========================
+     INFO SECTION
+  ========================= */
+  &__info {
+    padding: 10px 12px 14px;
+
+    h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* =========================
+     FALLBACK
+  ========================= */
+  &__fallback {
+    height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-muted);
+  }
+}
+
+/* =========================
+   RESPONSIVE IMPROVEMENTS
+========================= */
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .movie-card__hover-overlay .overview {
+    -webkit-line-clamp: 10;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .movie-card__hover-overlay .overview {
+    -webkit-line-clamp: 6;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .movie-card__hover-overlay {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .movie-card__info {
+    padding: 12px;
+  }
+}

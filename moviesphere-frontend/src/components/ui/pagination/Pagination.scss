@@ -1,0 +1,103 @@
+// src/components/ui/pagination/Pagination.scss
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+/* ROOT */
+.pagination {
+  direction: ltr;
+
+  .MuiPagination-ul {
+    gap: 6px;
+  }
+
+  /* ALL ITEMS */
+  .MuiPaginationItem-root {
+    color: var(--text-primary);
+    background: var(--surface-secondary);
+
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+
+    min-width: 40px;
+    height: 40px;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+
+    backdrop-filter: blur(2px);
+
+    &:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* SELECTED PAGE */
+  .MuiPaginationItem-root.Mui-selected {
+    background: var(--accent-primary);
+    color: #fff;
+    border-color: var(--accent-primary);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+
+    &:hover {
+      background: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+  }
+
+  /* DISABLED BUTTONS (first/last/next/prev when unavailable) */
+  .MuiPaginationItem-root.Mui-disabled {
+    opacity: 0.35;
+    background: transparent;
+    border-color: transparent;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* 🔥 ELLIPSIS STYLE (IMPORTANT) */
+  .MuiPaginationItem-ellipsis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    
+
+    pointer-events: none; /* not clickable */
+    cursor: default;
+
+
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    opacity: 0.6;
+    font-weight: 600;
+  }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .pagination .MuiPaginationItem-root {
+    transition: none;
+    transform: none;
+  }
+}

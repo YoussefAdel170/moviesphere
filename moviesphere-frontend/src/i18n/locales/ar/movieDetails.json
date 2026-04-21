@@ -1,0 +1,19 @@
+{
+  "loading": "جاري التحميل...",
+  "not_found": "الفيلم غير موجود",
+  "back_button": "رجوع",
+  "back_aria": "العودة إلى الخلف",
+  "home_button": "الرئيسية",
+  "home_aria": "الذهاب إلى الصفحة الرئيسية",
+  "official_site": "الموقع الرسمي",
+  "poster_alt": "ملصق فيلم {{title}}",
+  "votes": "{{count}} صوت",
+  "overview": "نظرة عامة",
+  "budget": "الميزانية",
+  "revenue": "الإيرادات",
+  "original_language": "اللغة الأصلية",
+  "status": "الحالة",
+  "production_companies": "شركات الإنتاج",
+  "tmdb_recommends": "🎬 توصيات TMDB",
+  "view_more": "عرض المزيد"
+}

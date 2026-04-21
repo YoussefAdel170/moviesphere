@@ -1,0 +1,190 @@
+/* src/index.css */
+@import "tailwindcss";
+
+/* ============================================
+   GLOBAL DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* ⏱️ TRANSITIONS (NEW - IMPORTANT) */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.45s cubic-bezier(0.2, 0.9, 0.4, 1);
+
+  /* ============================================
+     LIGHT MODE (cool blue, balanced UX)
+     ============================================ */
+
+  --bg-primary: #f0f4fa;
+  --bg-secondary: #e8eef5;
+  --bg-tertiary: #dee6ef;
+
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafd;
+
+  /* soft hover (NOT full blue anymore) */
+  --surface-hover: rgba(59, 130, 246, 0.08);
+
+  --text-primary: #0a2540;
+  --text-secondary: #2c3e50;
+  --text-muted: #5a6e85;
+  --text-disabled: #94a8c2;
+
+  --border-light: #e2eaf5;
+  --border-medium: #cbdae9;
+
+  --accent-primary: #3b82f6;
+  --accent-secondary: #ef4444;
+  --accent-success: #10b981;
+  --accent-warning: #f59e0b;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06);
+
+  /* navbar (clean glass style) */
+  --navbar-bg: rgba(255, 255, 255, 0.7);
+  --navbar-bg-scrolled: rgba(255, 255, 255, 0.9);
+  --navbar-border: rgba(0, 0, 0, 0.06);
+
+  /* scrollbar */
+  --scrollbar-track: var(--bg-secondary);
+  --scrollbar-thumb: #cbdae9;
+  --scrollbar-thumb-hover: #a0b4cc;
+}
+
+/* ============================================
+   DARK MODE (modern, layered, Netflix-like)
+   ============================================ */
+
+.dark {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+
+  --surface-primary: #161b22;
+  --surface-secondary: #1f242c;
+  --surface-hover: #2a313a;
+
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --text-disabled: #484f58;
+
+  --border-light: #30363d;
+  --border-medium: #424a53;
+
+  --accent-primary: #58a6ff;
+  --accent-secondary: #ff3b3b;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+
+  --navbar-bg: rgba(22, 27, 34, 0.75);
+  --navbar-bg-scrolled: rgba(22, 27, 34, 0.95);
+  --navbar-border: #30363d;
+
+  --scrollbar-track: var(--bg-secondary);
+  --scrollbar-thumb: #30363d;
+  --scrollbar-thumb-hover: #424a53;
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal);
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ============================================
+   SEARCH INPUT
+   ============================================ */
+
+input[type="search"] {
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+
+  padding: 0.75rem;
+  border-radius: 9999px;
+
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal);
+}
+
+input[type="search"]::placeholder {
+  color: var(--text-muted);
+  transition: opacity var(--transition-fast);
+}
+
+input[type="search"]:focus::placeholder {
+  opacity: 0;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ============================================
+   TAILWIND THEME BRIDGE
+   ============================================ */
+
+@theme {
+  --color-background: var(--bg-primary);
+  --color-surface: var(--surface-primary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border-light);
+  --color-accent: var(--accent-primary);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.animate-pulse {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+img {
+  transition: opacity var(--transition-normal);
+}

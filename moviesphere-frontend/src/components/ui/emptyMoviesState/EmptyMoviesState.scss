@@ -1,0 +1,91 @@
+// src/components/ui/emptyMoviesState/EmptyMoviesState.scss
+
+.movies-empty-wrapper {
+  min-height: calc(100vh - 180px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 16px;
+}
+
+.movies-empty-card {
+  text-align: center;
+
+  padding: 36px 28px;
+  border-radius: 24px;
+
+  background: var(--surface-primary);
+  border: 1px solid var(--border-light);
+
+  max-width: 420px;
+  width: 100%;
+
+  box-shadow: var(--shadow-md);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  h2 {
+    margin-top: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: var(--text-primary);
+  }
+
+  p {
+    margin-top: 10px;
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+
+    color: var(--text-secondary);
+  }
+
+  button {
+    margin-top: 24px;
+
+    padding: 10px 20px;
+    border-radius: 999px;
+
+    border: 1px solid var(--accent-primary);
+    background: var(--accent-primary);
+
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
+  }
+}
+
+/* Icon */
+.movies-empty-icon {
+  font-size: 48px;
+  color: var(--accent-primary);
+
+  display: flex;
+  justify-content: center;
+
+  animation: floatIcon 2.5s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes floatIcon {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}

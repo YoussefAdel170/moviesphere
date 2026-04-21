@@ -1,0 +1,8 @@
+{
+  "rating_not_available": "غير متوفر",
+  "unknown_title": "عنوان غير معروف",
+  "no_poster_available": "لا يوجد ملصق",
+  "poster_alt": "ملصق فيلم {{title}}",
+  "rating_label": "التقييم: {{rating}} من 10",
+  "aria_card_label": "{{title}}، تقييمه {{rating}} من 10"
+}

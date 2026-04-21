@@ -1,0 +1,8 @@
+{
+  "loading": "Loading similar movies...",
+  "error": "Failed to load similar movies.",
+  "back_link": "Back to {{title}}",
+  "movie": "Movie",
+  "page_title": "Movies Like {{title}}",
+  "no_results": "No similar movies found."
+}

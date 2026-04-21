@@ -1,0 +1,10 @@
+{
+    "analyzing": "AI is analyzing & recommending...",
+    "powered_picks": "🤖 AI-Powered Picks",
+
+
+      "loading": "Loading AI recommendations...",
+  "no_recommendations": "No AI recommendations found.",
+  "back_link": "Back to {{title}}",
+  "page_title": "🤖 AI-Powered Picks for {{title}}"
+}

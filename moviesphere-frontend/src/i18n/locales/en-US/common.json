@@ -1,0 +1,27 @@
+{
+    "loading": "Loading...",
+    "retry": "Retry",
+    "back": "Back",
+    "home": "Home",
+    "officialSite": "Official Site",
+    "view_all": "View All →",
+
+    "back_button": "Back",
+    "home_button": "Home",
+    "back_aria": "Go back",
+    "home_aria": "Go to homepage",
+    "official_site": "Official Site",
+
+
+  "grid_aria": "List of movies",
+  "empty_message": "No movies to display",
+  "no_movies": "No movies found.",
+
+
+    "search_results": "Search results for: {{query}}"
+
+
+    
+
+
+}

@@ -1,0 +1,13 @@
+{
+  "search_placeholder": "ابحث عن أفلام...",
+  "search_aria": "البحث عن أفلام",
+  "clear_aria": "مسح البحث",
+  "voice_aria": "البحث الصوتي",
+  "darkmode_aria": "تبديل الوضع المظلم",
+  "language_aria": "تبديل اللغة",
+  "menu_aria": "القائمة",
+  "logo_aria": "الذهاب إلى الصفحة الرئيسية",
+  "loading": "جاري التحميل...",
+  "dark_mode": "الوضع المظلم",
+  "language_label": "اللغة"
+}

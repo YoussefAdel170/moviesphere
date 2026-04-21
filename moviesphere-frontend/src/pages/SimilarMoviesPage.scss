@@ -1,0 +1,69 @@
+// src/pages/SimilarMoviesPage.scss
+.similar-movies-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 100px 2rem 2rem;
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-primary);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      transition: transform 0.2s;
+      
+      &:hover {
+        transform: translateX(-4px);
+      }
+    }
+    
+    h1 {
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+  
+  .similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+  }
+  
+  .similar-loading, .similar-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 80px 1rem 1rem;
+    .similar-grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
