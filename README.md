@@ -91,11 +91,11 @@ The project is actively evolving – current features include movie browsing, se
 ### 📱 Mobile Views
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/burger-icon-expanded-mobile.PNG" alt="Burger menu expanded on mobile">
+    <img src="./moviesphere-frontend/screenshots/burger-icon-expanded-mobile.PNG" alt="Burger menu expanded on mobile">
     <figcaption>🍔 Burger Menu (Expanded)</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/mobile-homepage.PNG" alt="Mobile homepage">
+    <img src="./moviesphere-frontend/screenshots/mobile-homepage.PNG" alt="Mobile homepage">
     <figcaption>📱 Mobile Homepage</figcaption>
   </figure>
 </div>
@@ -103,11 +103,11 @@ The project is actively evolving – current features include movie browsing, se
 ### 🌙 Dark Mode & Arabic RTL
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/dark-mode-desktop.png" alt="Dark Mode Desktop">
+    <img src="./moviesphere-frontend/screenshots/dark-mode-desktop.png" alt="Dark Mode Desktop">
     <figcaption>🌑 Dark Mode (Desktop)</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/dark-mode-desktop-ar.png" alt="Dark Mode Desktop Arabic">
+    <img src="./moviesphere-frontend/screenshots/dark-mode-desktop-ar.png" alt="Dark Mode Desktop Arabic">
     <figcaption>🌑 Dark Mode + Arabic (RTL)</figcaption>
   </figure>
 </div>
@@ -115,11 +115,11 @@ The project is actively evolving – current features include movie browsing, se
 ### ☀️ Light Mode
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/light-mode-desktop.png" alt="Light Mode Desktop">
+    <img src="./moviesphere-frontend/screenshots/light-mode-desktop.png" alt="Light Mode Desktop">
     <figcaption>☀️ Light Mode (Desktop)</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/light-mode-desktop-homepage.PNG" alt="Light Mode Desktop Homepage">
+    <img src="./moviesphere-frontend/screenshots/light-mode-desktop-homepage.PNG" alt="Light Mode Desktop Homepage">
     <figcaption>🏠 Light Mode Homepage</figcaption>
   </figure>
 </div>
@@ -127,15 +127,15 @@ The project is actively evolving – current features include movie browsing, se
 ### 🎞️ Movie Details Page
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/movie-details-page-part-1.PNG" alt="Movie details part 1">
+    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-1.PNG" alt="Movie details part 1">
     <figcaption>📋 Overview & Info (1)</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/movie-details-page-part-2.PNG" alt="Movie details part 2">
+    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-2.PNG" alt="Movie details part 2">
     <figcaption>💰 Budget & Revenue (2)</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/movie-details-page-part-3.PNG" alt="Movie details part 3">
+    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-3.PNG" alt="Movie details part 3">
     <figcaption>🏢 Production Companies (3)</figcaption>
   </figure>
 </div>
@@ -143,15 +143,15 @@ The project is actively evolving – current features include movie browsing, se
 ### 🔍 Search & Filters
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/search-by-movie-name.PNG" alt="Search by movie name">
+    <img src="./moviesphere-frontend/screenshots/search-by-movie-name.PNG" alt="Search by movie name">
     <figcaption>🔎 Search by Movie Name</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/search-by-voice.PNG" alt="Search by video type">
+    <img src="./moviesphere-frontend/screenshots/search-by-voice.PNG" alt="Search by video type">
     <figcaption>🔎 Search by Video Type</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/url%20and%20pagination.jpg" alt="URL and pagination">
+    <img src="./moviesphere-frontend/screenshots/url%20and%20pagination.jpg" alt="URL and pagination">
     <figcaption>🔗 URL Sync & Pagination</figcaption>
   </figure>
 </div>
@@ -159,11 +159,11 @@ The project is actively evolving – current features include movie browsing, se
 ### 🤖 AI & Recommendation Features
 <div class="screenshot-grid">
   <figure class="screenshot-card">
-    <img src="screenshots/ai-recommend-feature.PNG" alt="AI recommendation feature">
+    <img src="./moviesphere-frontend/screenshots/ai-recommend-feature.PNG" alt="AI recommendation feature">
     <figcaption>🤖 AI‑Powered Recommendations</figcaption>
   </figure>
   <figure class="screenshot-card">
-    <img src="screenshots/similar-tmdb-feature.PNG" alt="TMDB similar movies">
+    <img src="./moviesphere-frontend/screenshots/similar-tmdb-feature.PNG" alt="TMDB similar movies">
     <figcaption>🎬 TMDB Similar Movies</figcaption>
   </figure>
 </div>
@@ -174,15 +174,13 @@ The project is actively evolving – current features include movie browsing, se
 ## 🛠️ Tech Stack (Current)
 
 ### Frontend
-- React 18 + TypeScript
-- Redux Toolkit
+- React 18 + TypeScript 
+- Redux Toolkit 
 - React Router DOM
-- Vite
-- Tailwind CSS + SCSS modules
-- Framer Motion
+- Vite 
+- Tailwind CSS + SCSS 
+- Framer Motion 
 - i18next
-- TS
-- SASS
 
 ### Backend (AI endpoint)
 - Node.js + Express
