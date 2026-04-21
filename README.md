@@ -70,7 +70,7 @@ All screenshots are stored in the `screenshots/` folder.
 <p align="center">
   <img src="./moviesphere-frontend/screenshots/search-by-movie-name.PNG" width="30%" />
   <img src="./moviesphere-frontend/screenshots/search-by-voice.PNG" width="30%" />
-  <img src="./moviesphere-frontend/screenshots/url%20and%20pagination.jpg" width="30%" />
+  <img src="./moviesphere-frontend/screenshots/pagination-feature.PNG" width="30%" />
 </p>
 
 ---
@@ -81,7 +81,6 @@ All screenshots are stored in the `screenshots/` folder.
   <img src="./moviesphere-frontend/screenshots/ai-recommend-feature.PNG" width="45%" />
   <img src="./moviesphere-frontend/screenshots/similar-tmdb-feature.PNG" width="45%" />
 </p>
----
 
 
 ## 🛠️ Tech Stack (Current)
