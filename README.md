@@ -40,8 +40,7 @@ All screenshots are stored in the `screenshots/` folder.
 ### 🌙 Dark Mode & RTL
 
 <p align="center">
-  <img src="screenshots/dark-mode-desktop.png" width="45%" />
-  <img src="screenshots/dark-mode-desktop-ar.png" width="45%" />
+  <img src="screenshots/dark-mode-desktop-ar-homepage.png" width="45%" />
 </p>
 
 ---
@@ -49,7 +48,6 @@ All screenshots are stored in the `screenshots/` folder.
 ### ☀️ Light Mode
 
 <p align="center">
-  <img src="screenshots/light-mode-desktop.png" width="45%" />
   <img src="screenshots/light-mode-desktop-homepage.PNG" width="45%" />
 </p>
 
