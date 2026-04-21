@@ -31,8 +31,8 @@ All screenshots are stored in the `screenshots/` folder.
 ### 📱 Mobile Views
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/burger-icon-expanded-mobile.PNG" width="45%" />
-  <img src="./moviesphere-frontend/screenshots/mobile-homepage.PNG" width="45%" />
+  <img src="screenshots/burger-icon-expanded-mobile.PNG" width="45%" />
+  <img src="screenshots/mobile-homepage.PNG" width="45%" />
 </p>
 
 ---
@@ -40,8 +40,8 @@ All screenshots are stored in the `screenshots/` folder.
 ### 🌙 Dark Mode & RTL
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/dark-mode-desktop.png" width="45%" />
-  <img src="./moviesphere-frontend/screenshots/dark-mode-desktop-ar.png" width="45%" />
+  <img src="screenshots/dark-mode-desktop.png" width="45%" />
+  <img src="screenshots/dark-mode-desktop-ar.png" width="45%" />
 </p>
 
 ---
@@ -49,8 +49,8 @@ All screenshots are stored in the `screenshots/` folder.
 ### ☀️ Light Mode
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/light-mode-desktop.png" width="45%" />
-  <img src="./moviesphere-frontend/screenshots/light-mode-desktop-homepage.PNG" width="45%" />
+  <img src="screenshots/light-mode-desktop.png" width="45%" />
+  <img src="screenshots/light-mode-desktop-homepage.PNG" width="45%" />
 </p>
 
 ---
@@ -58,9 +58,9 @@ All screenshots are stored in the `screenshots/` folder.
 ### 🎞️ Movie Details
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-1.PNG" width="30%" />
-  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-2.PNG" width="30%" />
-  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-3.PNG" width="30%" />
+  <img src="screenshots/movie-details-page-part-1.PNG" width="30%" />
+  <img src="screenshots/movie-details-page-part-2.PNG" width="30%" />
+  <img src="screenshots/movie-details-page-part-3.PNG" width="30%" />
 </p>
 
 ---
@@ -68,9 +68,9 @@ All screenshots are stored in the `screenshots/` folder.
 ### 🔍 Search & Features
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/search-by-movie-name.PNG" width="30%" />
-  <img src="./moviesphere-frontend/screenshots/search-by-voice.PNG" width="30%" />
-  <img src="./moviesphere-frontend/screenshots/pagination-feature.PNG" width="30%" />
+  <img src="screenshots/search-by-movie-name.PNG" width="30%" />
+  <img src="screenshots/search-by-voice.PNG" width="30%" />
+  <img src="screenshots/pagination-feature.PNG" width="30%" />
 </p>
 
 ---
@@ -78,8 +78,8 @@ All screenshots are stored in the `screenshots/` folder.
 ### 🤖 AI & Recommendations
 
 <p align="center">
-  <img src="./moviesphere-frontend/screenshots/ai-recommend-feature.PNG" width="45%" />
-  <img src="./moviesphere-frontend/screenshots/similar-tmdb-feature.PNG" width="45%" />
+  <img src="screenshots/ai-recommend-feature.PNG" width="45%" />
+  <img src="screenshots/similar-tmdb-feature.PNG" width="45%" />
 </p>
 
 
