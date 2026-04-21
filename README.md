@@ -24,150 +24,63 @@ The project is actively evolving – current features include movie browsing, se
 
 ## 📸 Screenshots
 
-<div align="center">
-  <p><em>All screenshots are stored in the <code>screenshots/</code> folder – each has a fixed height and responsive width.</em></p>
-</div>
+All screenshots are stored in the `screenshots/` folder.
 
-<style>
-  .screenshot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-  .screenshot-card {
-    margin: 0;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #f8f9fa;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .screenshot-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
-  }
-  .screenshot-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    border-bottom: 1px solid #eaecef;
-  }
-  .screenshot-card figcaption {
-    padding: 0.75rem;
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #24292e;
-    background: white;
-  }
-  .category-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin: 2rem 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid #e1e4e8;
-  }
-  @media (prefers-color-scheme: dark) {
-    .screenshot-card {
-      background: #2d333b;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .screenshot-card figcaption {
-      background: #2d333b;
-      color: #c9d1d9;
-    }
-    .screenshot-card img {
-      border-bottom-color: #444c56;
-    }
-    .category-title {
-      border-bottom-color: #444c56;
-      color: #c9d1d9;
-    }
-  }
-</style>
+---
 
 ### 📱 Mobile Views
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/burger-icon-expanded-mobile.PNG" alt="Burger menu expanded on mobile">
-    <figcaption>🍔 Burger Menu (Expanded)</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/mobile-homepage.PNG" alt="Mobile homepage">
-    <figcaption>📱 Mobile Homepage</figcaption>
-  </figure>
-</div>
 
-### 🌙 Dark Mode & Arabic RTL
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/dark-mode-desktop.png" alt="Dark Mode Desktop">
-    <figcaption>🌑 Dark Mode (Desktop)</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/dark-mode-desktop-ar.png" alt="Dark Mode Desktop Arabic">
-    <figcaption>🌑 Dark Mode + Arabic (RTL)</figcaption>
-  </figure>
-</div>
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/burger-icon-expanded-mobile.PNG" width="45%" />
+  <img src="./moviesphere-frontend/screenshots/mobile-homepage.PNG" width="45%" />
+</p>
+
+---
+
+### 🌙 Dark Mode & RTL
+
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/dark-mode-desktop.png" width="45%" />
+  <img src="./moviesphere-frontend/screenshots/dark-mode-desktop-ar.png" width="45%" />
+</p>
+
+---
 
 ### ☀️ Light Mode
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/light-mode-desktop.png" alt="Light Mode Desktop">
-    <figcaption>☀️ Light Mode (Desktop)</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/light-mode-desktop-homepage.PNG" alt="Light Mode Desktop Homepage">
-    <figcaption>🏠 Light Mode Homepage</figcaption>
-  </figure>
-</div>
 
-### 🎞️ Movie Details Page
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-1.PNG" alt="Movie details part 1">
-    <figcaption>📋 Overview & Info (1)</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-2.PNG" alt="Movie details part 2">
-    <figcaption>💰 Budget & Revenue (2)</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/movie-details-page-part-3.PNG" alt="Movie details part 3">
-    <figcaption>🏢 Production Companies (3)</figcaption>
-  </figure>
-</div>
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/light-mode-desktop.png" width="45%" />
+  <img src="./moviesphere-frontend/screenshots/light-mode-desktop-homepage.PNG" width="45%" />
+</p>
 
-### 🔍 Search & Filters
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/search-by-movie-name.PNG" alt="Search by movie name">
-    <figcaption>🔎 Search by Movie Name</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/search-by-voice.PNG" alt="Search by video type">
-    <figcaption>🔎 Search by Video Type</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/url%20and%20pagination.jpg" alt="URL and pagination">
-    <figcaption>🔗 URL Sync & Pagination</figcaption>
-  </figure>
-</div>
+---
 
-### 🤖 AI & Recommendation Features
-<div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/ai-recommend-feature.PNG" alt="AI recommendation feature">
-    <figcaption>🤖 AI‑Powered Recommendations</figcaption>
-  </figure>
-  <figure class="screenshot-card">
-    <img src="./moviesphere-frontend/screenshots/similar-tmdb-feature.PNG" alt="TMDB similar movies">
-    <figcaption>🎬 TMDB Similar Movies</figcaption>
-  </figure>
-</div>
+### 🎞️ Movie Details
 
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-1.PNG" width="30%" />
+  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-2.PNG" width="30%" />
+  <img src="./moviesphere-frontend/screenshots/movie-details-page-part-3.PNG" width="30%" />
+</p>
+
+---
+
+### 🔍 Search & Features
+
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/search-by-movie-name.PNG" width="30%" />
+  <img src="./moviesphere-frontend/screenshots/search-by-voice.PNG" width="30%" />
+  <img src="./moviesphere-frontend/screenshots/url%20and%20pagination.jpg" width="30%" />
+</p>
+
+---
+
+### 🤖 AI & Recommendations
+
+<p align="center">
+  <img src="./moviesphere-frontend/screenshots/ai-recommend-feature.PNG" width="45%" />
+  <img src="./moviesphere-frontend/screenshots/similar-tmdb-feature.PNG" width="45%" />
+</p>
 ---
 
 
