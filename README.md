@@ -5,7 +5,8 @@ It combines data from **TMDB** with a **generative AI** (Groq) to deliver person
 The project is actively evolving – current features include movie browsing, search, details, AI recommendations, voice search, dark/light mode, and basic i18n (English/Arabic).
 
 
-🔗 **Live Demo:** [https://moviesphere-frontend-617018622741.us-central1.run.app](MovieSphere Live Demo)  
+🎬 **Live Demo:** [MovieSphere](https://moviesphere-frontend-617018622741.us-central1.run.app)
+
 
 ---
 
