@@ -80,7 +80,7 @@ export default function Navbar() {
             {darkMode ? <FiMoon /> : <FiSun />}
           </button>
 
-          <button onClick={handleToggleLanguage} aria-label={t("language_aria")}>
+          <button onClick={handleToggleLanguage} aria-label={t("language_aria")} className="d-flex gap-1">
             <FiGlobe /> {language === "ar" ? "AR" : "EN"}
           </button>
         </div>

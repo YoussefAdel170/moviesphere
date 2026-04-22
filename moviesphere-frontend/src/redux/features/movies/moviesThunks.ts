@@ -53,7 +53,7 @@ export const fetchAIRecommendations = createAsyncThunk<
 >(
   "movies/fetchAIRecommendations",
   async (
-    { title, year, genres, overview },
+    { title, year, genres, overview, language }, // ← language added
     { rejectWithValue }
   ) => {
     try {
@@ -65,6 +65,7 @@ export const fetchAIRecommendations = createAsyncThunk<
           year,
           genres,
           overview,
+          language,          // ← pass language to backend
           limit: 20,
         }),
       });
@@ -73,9 +74,7 @@ export const fetchAIRecommendations = createAsyncThunk<
         throw new Error(`AI backend error: ${response.status}`);
       }
 
-      const data: AIRecommendResponse = await response.json();
-
-      // ✅ RETURN RAW AI DATA ONLY
+      const data = await response.json();
       return data.results || [];
     } catch (error: any) {
       return rejectWithValue(error.message || "AI fetch failed");

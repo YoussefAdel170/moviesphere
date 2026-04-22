@@ -4,7 +4,8 @@
 It combines data from **TMDB** with a **generative AI** (Groq) to deliver personalised movie recommendations.  
 The project is actively evolving – current features include movie browsing, search, details, AI recommendations, voice search, dark/light mode, and basic i18n (English/Arabic).
 
-🔗 **Live Demo:** *(coming soon)*
+
+🔗 **Live Demo:** [https://moviesphere-frontend-617018622741.us-central1.run.app](MovieSphere Live Demo)  
 
 ---
 
@@ -99,6 +100,12 @@ All screenshots are stored in the `screenshots/` folder.
 ### Testing (partial – to be expanded)
 - Jest (setup ready)
 
+### Deployment (Production)
+- **Google Cloud Run** – Serverless container hosting for both frontend and backend.
+- **Google Cloud Build** – Builds Docker images from source code.
+- **Google Container Registry** – Stores the built images.
+- **Cloud Shell** – Used for running `gcloud` commands (no local Docker required).
+
 ---
 
 ## 🚧 Planned / Future Work
@@ -113,7 +120,8 @@ This project is **ongoing**. The following enhancements are in the roadmap:
 | **AI Enhancements** | • **Q&A system** – Ask natural language questions (“What are the best action movies from 2020?”) and get AI‑generated answers + movie lists.<br>• **Mood‑based search** – “Find a relaxing movie for tonight.”<br>• **Explain recommendations** – AI explains why a movie was suggested.<br>• **Sentiment‑based recommendations** – Using review analysis from TMDB. |
 | **Advanced Sorting & Filtering** | Sort by rating, release date, popularity, budget, revenue. Filter by genre, year range, language, vote count. |
 | **User Features** | Authentication (JWT), personal watchlist, favourites, ratings, watched history. |
-| **Deployment** | Docker containerisation, Google Cloud Run (serverless), GitHub Actions CI/CD. |
+| ~~**Deployment**~~ | ~~Docker containerisation, Google Cloud Run (serverless), GitHub Actions CI/CD.~~ (✅ **Done**) |
+
 
 ---
 
@@ -153,6 +161,38 @@ npm run dev
 
 ---
 
+
+## ☁️ Deployment on Google Cloud Platform
+
+- The app is deployed as two independent **Cloud Run** services:
+  - **Backend** – Node.js container that listens on 0.0.0.0:$PORT.
+    Environment variable GROQ_API_KEY is set at deployment time.
+
+  - **Frontend** – Multi‑stage Docker build:
+    - Node 20 container builds the Vite app with VITE_API_BASE_URL and VITE_API_KEY as build arguments.
+    - Nginx container serves the static files on port 80.
+
+- **Build & deploy commands** (run from Cloud Shell):
+```bash
+# Backend
+cd backend
+gcloud builds submit --tag gcr.io/PROJECT_ID/moviesphere-backend
+gcloud run deploy moviesphere-backend \
+  --image gcr.io/PROJECT_ID/moviesphere-backend \
+  --platform managed --region us-central1 --allow-unauthenticated \
+  --set-env-vars GROQ_API_KEY=your_groq_key
+
+  # Frontend
+cd frontend
+gcloud builds submit --config cloudbuild.yaml \
+  --substitutions _VITE_API_BASE_URL="https://backend-url.run.app",_VITE_API_KEY="your_tmdb_key"
+gcloud run deploy moviesphere-frontend \
+  --image gcr.io/PROJECT_ID/moviesphere-frontend \
+  --platform managed --region us-central1 --allow-unauthenticated --port 80
+```
+
+---
+
 ## 📁 Project Structure
 
 ```text
@@ -184,3 +224,12 @@ moviesphere/
 ├── docker-compose.yml (planned)
 ├── README.md
 ```
+
+
+---
+
+## 🙏 Acknowledgements
+
+- **TMDB** for movie data.
+- **Groq** for free AI inference.
+- **Google Cloud Platform** for hosting.

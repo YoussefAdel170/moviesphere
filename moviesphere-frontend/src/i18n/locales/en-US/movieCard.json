@@ -4,5 +4,26 @@
   "no_poster_available": "No poster available",
   "poster_alt": "Poster for {{title}}",
   "rating_label": "Rating: {{rating}} out of 10",
-  "aria_card_label": "{{title}}, rated {{rating}} out of 10"
+  "aria_card_label": "{{title}}, rated {{rating}} out of 10",
+  "genre": {
+    "action": "Action",
+    "adventure": "Adventure",
+    "animation": "Animation",
+    "comedy": "Comedy",
+    "crime": "Crime",
+    "documentary": "Documentary",
+    "drama": "Drama",
+    "family": "Family",
+    "fantasy": "Fantasy",
+    "history": "History",
+    "horror": "Horror",
+    "music": "Music",
+    "mystery": "Mystery",
+    "romance": "Romance",
+    "sciFi": "Sci-Fi",
+    "tvMovie": "TV Movie",
+    "thriller": "Thriller",
+    "war": "War",
+    "western": "Western"
+  }
 }

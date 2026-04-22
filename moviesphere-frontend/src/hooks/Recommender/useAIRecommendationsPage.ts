@@ -40,13 +40,15 @@ export function useAIRecommendationsPage(id: string | undefined) {
         const overview = movie.overview;
 
         // 2. Call AI backend directly (no Redux thunk – simpler for pagination)
-        const aiResponse = await fetch("/api/ai-recommend", {
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || "";
+        const aiResponse = await fetch(`${baseUrl}/api/ai-recommend`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             title: movie.title,
             year,
             genres,
+            language,
             overview,
             page: 1,
             limit: 100, // ask for up to 100 AI suggestions

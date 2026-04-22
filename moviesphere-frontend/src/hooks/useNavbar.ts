@@ -16,142 +16,88 @@ export function useNavbar() {
   );
 
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [open, setOpen] = useState(false);
-
-  // ✅ ALWAYS STRING SAFE
-  const [query, setQuery] = useState<string>(
-    searchParams.get('query') || ''
-  );
-
+  const [query, setQuery] = useState<string>(searchParams.get('query') || '');
   const [listening, setListening] = useState(false);
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   const recognitionRef = useRef<any>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const {
-    debouncedValue: debouncedQuery,
-    cancel: cancelDebounce,
-  } = useDebounce(query, 400);
-
+  const { debouncedValue: debouncedQuery, cancel: cancelDebounce } = useDebounce(query, 400);
   const skipNextDebounceRef = useRef(false);
 
-  /* =========================
-     DARK MODE
-  ========================= */
+  // Dark mode
   useEffect(() => {
     if (darkMode) document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   }, [darkMode]);
 
-  /* =========================
-     SCROLL
-  ========================= */
+  // Scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* =========================
-     SAFE DEBOUNCED QUERY SYNC
-  ========================= */
+  // Debounced URL sync
   useEffect(() => {
     if (skipNextDebounceRef.current) {
       skipNextDebounceRef.current = false;
       return;
     }
-
     const safeQuery = debouncedQuery ?? '';
-
     setSearchParams((prev) => {
       const newParams = new URLSearchParams(prev);
       const oldQuery = prev.get('query') || '';
-
       if (safeQuery.trim()) {
         newParams.set('query', safeQuery);
-
-        if (oldQuery !== safeQuery) {
-          newParams.set('page', '1');
-        }
+        if (oldQuery !== safeQuery) newParams.set('page', '1');
       } else {
         newParams.delete('query');
         if (oldQuery) newParams.set('page', '1');
       }
-
       return newParams;
     });
   }, [debouncedQuery, setSearchParams]);
 
-  /* =========================
-     SYNC INPUT WITH URL
-  ========================= */
+  // Sync input when URL changes
   useEffect(() => {
     const urlQuery = searchParams.get('query') || '';
     if (urlQuery !== query) setQuery(urlQuery);
   }, [searchParams]);
 
-  /* =========================
-     VOICE SETUP
-  ========================= */
+  // Voice recognition
   useEffect(() => {
-    const SpeechRecognition =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition;
-
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setVoiceError('Voice search not supported');
       return;
     }
-
     const recognition = new SpeechRecognition();
-
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = language === 'ar' ? 'ar-EG' : 'en-US';
-
-    recognition.onresult = (event: any) => {
-      const spokenText = event.results[0][0].transcript;
-      setQuery(spokenText ?? '');
-    };
-
+    recognition.onresult = (event: any) => setQuery(event.results[0][0].transcript ?? '');
     recognition.onerror = (event: any) => {
       setVoiceError(`Error: ${event.error}`);
       setListening(false);
       setTimeout(() => setVoiceError(null), 3000);
     };
-
     recognition.onend = () => setListening(false);
-
     recognitionRef.current = recognition;
-
-    return () => {
-      try {
-        recognitionRef.current?.abort?.();
-      } catch {}
-    };
+    return () => { recognitionRef.current?.abort?.(); };
   }, [language]);
 
-  /* =========================
-     ESC CLOSE
-  ========================= */
+  // ESC close drawer
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
-  /* =========================
-     HANDLERS
-  ========================= */
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value ?? '';
-    setQuery(value);
-
+    setQuery(e.target.value);
     if (error) dispatch(clearError());
   };
 
@@ -162,7 +108,6 @@ export function useNavbar() {
 
   const handleVoice = async () => {
     if (!recognitionRef.current) return;
-
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       setListening(true);
@@ -176,16 +121,17 @@ export function useNavbar() {
   const handleToggleDarkMode = () => dispatch(toggleDarkMode());
   const handleToggleLanguage = () => dispatch(toggleLanguage());
 
+  // ✅ Logo click – clean reset without double fetch
   const handleLogoClick = () => {
     cancelDebounce();
-    skipNextDebounceRef.current = true;
-
     setQuery('');
-    setSearchParams({ page: '1' }, { replace: true });
+    skipNextDebounceRef.current = true;
+    // Clear URL parameters and go to home page
+    setSearchParams({}, { replace: true });
     navigate('/', { replace: true });
   };
 
-  const toggleDrawer = () => setOpen((p) => !p);
+  const toggleDrawer = () => setOpen(prev => !prev);
 
   return {
     darkMode,
@@ -197,7 +143,6 @@ export function useNavbar() {
     voiceError,
     scrolled,
     searchInputRef,
-
     handleSearchChange,
     clearSearch,
     handleVoice,

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { moviesApi } from "../../services/moviesApi";
+import { useAppSelector } from "../../redux/hooks";
 
 interface UseAIRecommendationsParams {
   title: string;
@@ -14,11 +15,11 @@ export function useAIRecommendations({
   year,
   genres,
   overview,
-  language = "en-US",
 }: UseAIRecommendationsParams) {
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { language } = useAppSelector((state) => state.movies);
 
   useEffect(() => {
     if (!title || !year) return;
@@ -40,6 +41,7 @@ export function useAIRecommendations({
             title,
             year,
             genres,
+            language,
             overview,
             page: 1,
             limit: 20,

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FiFilm } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useMovieCard } from "../../../hooks/useMovieCard";
+import { getGenreNames } from "../../../utils/genreMap";
 import "./MovieCard.scss";
 
 type Props = {
@@ -14,14 +15,6 @@ type Props = {
   overview?: string;
   genre_ids?: number[];
   index?: number;
-};
-
-const genreMap: Record<number, string> = {
-  28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy",
-  80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family",
-  14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music",
-  9648: "Mystery", 10749: "Romance", 878: "Sci-Fi", 10770: "TV Movie",
-  53: "Thriller", 10752: "War", 37: "Western"
 };
 
 function MovieCard({
@@ -48,13 +41,10 @@ function MovieCard({
     vote_average,
   });
 
-  // ⚡ PERFORMANCE FIX: memoize genres calculation
+  // ✅ Use the translated utility
   const genres = useMemo(() => {
-    return genre_ids
-      .map((id) => genreMap[id])
-      .filter(Boolean)
-      .slice(0, 4);
-  }, [genre_ids]);
+    return getGenreNames(genre_ids, t);
+  }, [genre_ids, t]);
 
   const ariaLabel = useMemo(() => {
     return t("aria_card_label", {
@@ -121,5 +111,4 @@ function MovieCard({
   );
 }
 
-// ⚡ PERFORMANCE FIX: memoize component
 export default React.memo(MovieCard);

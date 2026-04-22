@@ -1,4 +1,3 @@
-// src/hooks/useMoviesPage.ts
 import { useEffect, useLayoutEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -12,7 +11,6 @@ export function useMoviesPage() {
   const query = searchParams.get('query') || '';
   const page = Number(searchParams.get('page')) || 1;
 
-  // Fetch data when URL params change
   useEffect(() => {
     if (query) {
       dispatch(searchMovies({ query, language }));
@@ -21,7 +19,6 @@ export function useMoviesPage() {
     }
   }, [query, page, language, dispatch]);
 
-  // Scroll to top on query or page change
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [query, page]);
