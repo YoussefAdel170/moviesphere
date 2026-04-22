@@ -243,3 +243,21 @@
     padding: 12px;
   }
 }
+
+
+/* =========================
+   RESPONSIVE IMAGE HEIGHT
+========================= */
+@media (max-width: 768px) {
+  .movie-card__image img,
+  .movie-card__fallback {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-card__image img,
+  .movie-card__fallback {
+    height: 200px;
+  }
+}

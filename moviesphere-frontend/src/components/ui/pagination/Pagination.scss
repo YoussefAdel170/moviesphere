@@ -12,13 +12,14 @@
 
   .MuiPagination-ul {
     gap: 6px;
+    flex-wrap: wrap;      // allow wrapping on very small screens
+    justify-content: center;
   }
 
   /* ALL ITEMS */
   .MuiPaginationItem-root {
     color: var(--text-primary);
     background: var(--surface-secondary);
-
     border: 1px solid var(--border-light);
     border-radius: 12px;
 
@@ -61,7 +62,7 @@
     }
   }
 
-  /* DISABLED BUTTONS (first/last/next/prev when unavailable) */
+  /* DISABLED BUTTONS */
   .MuiPaginationItem-root.Mui-disabled {
     opacity: 0.35;
     background: transparent;
@@ -71,7 +72,7 @@
     box-shadow: none;
   }
 
-  /* 🔥 ELLIPSIS STYLE (IMPORTANT) */
+  /* ELLIPSIS STYLE */
   .MuiPaginationItem-ellipsis {
     display: flex;
     justify-content: center;
@@ -79,22 +80,81 @@
     color: var(--text-secondary);
     background: transparent;
     border: none;
-    
-
-    pointer-events: none; /* not clickable */
+    pointer-events: none;
     cursor: default;
-
-
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
     opacity: 0.6;
     font-weight: 600;
   }
+
+  /* ============================================
+     📱 MOBILE RESPONSIVE (touch-friendly)
+     ============================================ */
+  @media (max-width: 768px) {
+    .MuiPagination-ul {
+      gap: 4px;
+    }
+
+    .MuiPaginationItem-root {
+      min-width: 36px;
+      height: 36px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+
+    /* Increase touch target for first/last/prev/next icons */
+    .MuiPaginationItem-root .MuiSvgIcon-root {
+      font-size: 1rem;
+    }
+
+    /* Reduce padding around the wrapper */
+    .pagination-wrapper {
+      padding: 16px 8px;
+    }
+  }
+
+  /* Extra small screens (≤480px) – further compact */
+  @media (max-width: 530px) {
+    .MuiPagination-ul {
+      gap: 2px;
+    }
+
+    .MuiPaginationItem-root {
+      min-width: 32px;
+      height: 32px;
+      font-size: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .MuiPaginationItem-root .MuiSvgIcon-root {
+      font-size: 0.9rem;
+    }
+  }
+
+
+
+   /* Extra small screens (≤480px) – further compact */
+  @media (max-width: 466px) {
+    .MuiPagination-ul {
+      gap: 2px;
+    }
+
+    .MuiPaginationItem-root {
+      min-width: 25px;
+      height: 25px;
+      font-size: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .MuiPaginationItem-root .MuiSvgIcon-root {
+      font-size: 0.9rem;
+    }
+  }
 }
 
-/* accessibility */
+/* accessibility – reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .pagination .MuiPaginationItem-root {
     transition: none;
