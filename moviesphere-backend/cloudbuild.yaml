@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/moviesphere-fullstack/moviesphere-backend', '.']
+images:
+  - 'gcr.io/moviesphere-fullstack/moviesphere-backend'

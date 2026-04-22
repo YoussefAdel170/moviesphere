@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 import './index.css';
-import i18n from './i18n/i18n';
 import { syncLanguage } from './i18n/languageSync';
 
 // Get stored language (single source of truth start point)

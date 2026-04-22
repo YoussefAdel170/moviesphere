@@ -147,6 +147,8 @@ export default function MovieDetailsPage() {
                     poster_path={normalized.poster_path || undefined}
                     vote_average={normalized.vote_average}
                     index={idx}
+                    overview={normalized.overview}
+                    genre_ids={normalized.genre_ids}
                   />
                 );
               })}

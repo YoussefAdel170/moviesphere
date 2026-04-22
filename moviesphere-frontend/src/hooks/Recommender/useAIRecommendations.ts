@@ -30,7 +30,10 @@ export function useAIRecommendations({
         setLoading(true);
         setError(null);
 
-        const aiResponse = await fetch("/api/ai-recommend", {
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || "";
+        const url = `${baseUrl}/api/ai-recommend`;
+
+        const aiResponse = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -49,21 +52,31 @@ export function useAIRecommendations({
 
         const aiData = await aiResponse.json();
 
-        if (!aiData.results?.length) {
+        // Robust array extraction
+        let results: any[] = [];
+        if (Array.isArray(aiData.results)) {
+          results = aiData.results;
+        } else if (Array.isArray(aiData)) {
+          results = aiData;
+        } else if (Array.isArray(aiData.recommendations)) {
+          results = aiData.recommendations;
+        } else if (Array.isArray(aiData.movies)) {
+          results = aiData.movies;
+        }
+
+        if (results.length === 0) {
           setRecommendations([]);
           return;
         }
 
         const movies = await Promise.all(
-          aiData.results.map(async (rec: any) => {
+          results.map(async (rec: any) => {
             const searchRes = await moviesApi.search(rec.title, language);
-
             const found =
               searchRes.results?.find(
                 (m: any) =>
                   new Date(m.release_date).getFullYear() === rec.year
               ) || searchRes.results?.[0];
-
             return found;
           })
         );
@@ -89,11 +102,14 @@ export function useAIRecommendations({
     };
   }, [title, year, genres, overview, language]);
 
-  // remove duplicates safely
+  // Safe deduplication
   const uniqueRecommendations = useMemo(() => {
-    return Array.from(
-      new Map(recommendations.map((m) => [m.id, m])).values()
-    );
+    if (!Array.isArray(recommendations)) return [];
+    const map = new Map();
+    recommendations.forEach((m) => {
+      if (m && m.id) map.set(m.id, m);
+    });
+    return Array.from(map.values());
   }, [recommendations]);
 
   return {
