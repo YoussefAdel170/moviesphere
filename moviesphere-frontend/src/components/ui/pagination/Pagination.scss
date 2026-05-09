@@ -12,7 +12,7 @@
 
   .MuiPagination-ul {
     gap: 6px;
-    flex-wrap: wrap;      // allow wrapping on very small screens
+    flex-wrap: wrap; // allow wrapping on very small screens
     justify-content: center;
   }
 
@@ -133,9 +133,7 @@
     }
   }
 
-
-
-   /* Extra small screens (≤480px) – further compact */
+  /* Extra small screens (≤480px) – further compact */
   @media (max-width: 466px) {
     .MuiPagination-ul {
       gap: 2px;

@@ -1,27 +1,17 @@
 {
-    "loading": "Loading...",
-    "retry": "Retry",
-    "back": "Back",
-    "home": "Home",
-    "officialSite": "Official Site",
-    "view_all": "View All →",
+  "loading": "Loading...",
+  "retry": "Try Again",
+  "back": "Back",
+  "home": "Home",
+  "official_site": "Official Site",
+  "view_all": "View All",
 
-    "back_button": "Back",
-    "home_button": "Home",
-    "back_aria": "Go back",
-    "home_aria": "Go to homepage",
-    "official_site": "Official Site",
+  "back_aria": "Go back",
+  "home_aria": "Go to homepage",
 
-
-  "grid_aria": "List of movies",
-  "empty_message": "No movies to display",
+  "grid_aria": "Movie list",
+  "empty_message": "Nothing to show here yet",
   "no_movies": "No movies found.",
 
-
-    "search_results": "Search results for: {{query}}"
-
-
-    
-
-
+  "search_results": "Results for: {{query}}"
 }

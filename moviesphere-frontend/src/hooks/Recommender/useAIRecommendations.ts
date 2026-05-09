@@ -76,11 +76,10 @@ export function useAIRecommendations({
             const searchRes = await moviesApi.search(rec.title, language);
             const found =
               searchRes.results?.find(
-                (m: any) =>
-                  new Date(m.release_date).getFullYear() === rec.year
+                (m: any) => new Date(m.release_date).getFullYear() === rec.year,
               ) || searchRes.results?.[0];
             return found;
-          })
+          }),
         );
 
         if (!isCancelled) {

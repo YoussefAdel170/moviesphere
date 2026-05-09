@@ -310,12 +310,11 @@
     }
 
     .similar-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
   }
 }
-
 
 @media (max-width: 480px) {
   .similar-grid {

@@ -1,8 +1,8 @@
 // src/hooks/useSimilarMoviesPage.ts
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { moviesApi } from '../services/moviesApi';
-import { useAppSelector } from '../redux/hooks';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { moviesApi } from "../services/moviesApi";
+import { useAppSelector } from "../redux/hooks";
 
 type SimilarMovie = {
   id: number;
@@ -18,9 +18,9 @@ export function useSimilarMoviesPage(id: string | undefined) {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [movieTitle, setMovieTitle] = useState('');
+  const [movieTitle, setMovieTitle] = useState("");
 
-  const page = Number(searchParams.get('page')) || 1;
+  const page = Number(searchParams.get("page")) || 1;
 
   useEffect(() => {
     if (!id) return;
@@ -32,7 +32,7 @@ export function useSimilarMoviesPage(id: string | undefined) {
     // Fetch current movie title and similar movies in parallel
     Promise.all([
       moviesApi.details(Number(id), language),
-      moviesApi.getSimilar(Number(id), page, language)
+      moviesApi.getSimilar(Number(id), page, language),
     ])
       .then(([detailsData, similarData]) => {
         if (isMounted) {
@@ -48,12 +48,14 @@ export function useSimilarMoviesPage(id: string | undefined) {
         if (isMounted) setLoading(false);
       });
 
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [id, page, language]);
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: newPage.toString() });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return {

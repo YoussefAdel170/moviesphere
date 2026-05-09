@@ -4,28 +4,5 @@
   "no_poster_available": "لا يوجد ملصق",
   "poster_alt": "ملصق فيلم {{title}}",
   "rating_label": "التقييم: {{rating}} من 10",
-  "aria_card_label": "{{title}}، تقييمه {{rating}} من 10",
-
-
-  "genre": {
-    "action": "أكشن",
-    "adventure": "مغامرة",
-    "animation": "رسوم متحركة",
-    "comedy": "كوميدي",
-    "crime": "جريمة",
-    "documentary": "وثائقي",
-    "drama": "دراما",
-    "family": "عائلي",
-    "fantasy": "خيال",
-    "history": "تاريخي",
-    "horror": "رعب",
-    "music": "موسيقى",
-    "mystery": "غموض",
-    "romance": "رومانسي",
-    "sciFi": "خيال علمي",
-    "tvMovie": "فيلم تلفزيوني",
-    "thriller": "إثارة",
-    "war": "حرب",
-    "western": "غربي"
-  }
+  "aria_card_label": "{{title}}، تقييمه {{rating}} من 10"
 }

@@ -1,5 +1,5 @@
 {
-  "no_movies_title": "No movies found",
-  "no_movies_message": "We couldn't find what you’re looking for.\nTry a different keyword or explore popular movies.",
-  "back_to_popular": "Back to Popular Movies"
+  "no_movies_title": "No Results Found",
+  "no_movies_message": "We couldn't find anything matching your search.\nTry different keywords or explore popular movies.",
+  "back_to_popular": "Explore Popular Movies"
 }

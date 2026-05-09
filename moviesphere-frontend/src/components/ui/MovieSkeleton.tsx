@@ -1,5 +1,3 @@
-// src/components/ui/skeleton/MovieSkeleton.tsx
-
 export default function MovieSkeleton() {
   return (
     <div

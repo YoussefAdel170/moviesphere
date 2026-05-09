@@ -1,0 +1,28 @@
+{
+  "genres": "الأنواع",
+
+  "show_less": "عرض أقل",
+  "show_more": "عرض المزيد",
+
+  "genre": {
+    "action": "أكشن",
+    "adventure": "مغامرات",
+    "animation": "رسوم متحركة",
+    "comedy": "كوميديا",
+    "crime": "جريمة",
+    "documentary": "وثائقي",
+    "drama": "دراما",
+    "family": "عائلي",
+    "fantasy": "فانتازيا",
+    "history": "تاريخي",
+    "horror": "رعب",
+    "music": "موسيقي",
+    "mystery": "غموض",
+    "romance": "رومانسي",
+    "sci_fi": "خيال علمي",
+    "tv_movie": "فيلم تلفزيوني",
+    "thriller": "إثارة",
+    "war": "حربي",
+    "western": "ويسترن"
+  }
+}

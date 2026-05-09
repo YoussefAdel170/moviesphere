@@ -1,5 +1,5 @@
 // src/hooks/useMoviesList.ts
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 export function useMoviesList() {
   // Animation variants (static, no need for state)
@@ -13,7 +13,7 @@ export function useMoviesList() {
         },
       },
     }),
-    []
+    [],
   );
 
   const itemVariants = useMemo(
@@ -21,7 +21,7 @@ export function useMoviesList() {
       hidden: { opacity: 0, y: 20 },
       show: { opacity: 1, y: 0 },
     }),
-    []
+    [],
   );
 
   return {

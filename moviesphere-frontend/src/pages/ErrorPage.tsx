@@ -6,9 +6,9 @@ import "./ErrorPage.scss";
 type Props = { message?: string };
 
 export default function ErrorPage({ message }: Props) {
-  const { t } = useTranslation('errorPage');
+  const { t } = useTranslation("errorPage");
 
-  const displayMessage = message || t('default_message');
+  const displayMessage = message || t("default_message");
 
   return (
     <div className="error-page">
@@ -20,14 +20,12 @@ export default function ErrorPage({ message }: Props) {
       >
         <div className="error-icon">🎬</div>
 
-        <h1>{t('title')}</h1>
+        <h1>{t("title")}</h1>
 
-        <p className="error-message">
-          {displayMessage}
-        </p>
+        <p className="error-message">{displayMessage}</p>
 
         <button onClick={() => window.location.reload()}>
-          {t('retry_button')}
+          {t("retry_button")}
         </button>
       </motion.div>
     </div>

@@ -1,19 +1,27 @@
 {
   "loading": "جاري التحميل...",
-  "not_found": "الفيلم غير موجود",
-  "back_button": "رجوع",
-  "back_aria": "العودة إلى الخلف",
-  "home_button": "الرئيسية",
-  "home_aria": "الذهاب إلى الصفحة الرئيسية",
+  "not_found": "لم يتم العثور على الفيلم",
+
+  "back": "رجوع",
+  "back_aria": "العودة",
+
+  "home": "الرئيسية",
+  "home_aria": "الانتقال إلى الرئيسية",
+
   "official_site": "الموقع الرسمي",
+
   "poster_alt": "ملصق فيلم {{title}}",
-  "votes": "{{count}} صوت",
-  "overview": "نظرة عامة",
+
+  "votes": "{{count}} تقييم",
+
+  "overview": "نبذة",
   "budget": "الميزانية",
   "revenue": "الإيرادات",
   "original_language": "اللغة الأصلية",
   "status": "الحالة",
   "production_companies": "شركات الإنتاج",
-  "tmdb_recommends": "🎬 توصيات TMDB",
+
+  "tmdb_recommends": "🎬 ترشيحات TMDB",
+
   "view_more": "عرض المزيد"
 }

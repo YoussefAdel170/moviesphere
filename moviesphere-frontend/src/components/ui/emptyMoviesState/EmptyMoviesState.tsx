@@ -27,9 +27,7 @@ export default function EmptyMoviesState({ onClearSearch }: Props) {
 
         <p>{t("no_movies_message")}</p>
 
-        <button onClick={onClearSearch}>
-          {t("back_to_popular")}
-        </button>
+        <button onClick={onClearSearch}>{t("back_to_popular")}</button>
       </motion.div>
     </div>
   );

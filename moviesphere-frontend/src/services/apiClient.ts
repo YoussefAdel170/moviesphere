@@ -28,7 +28,7 @@ export const apiClient = async (endpoint: string) => {
     if (!res.ok || data.success === false) {
       throw new ApiError(
         data.status_message || "API Error",
-        data.status_code || res.status
+        data.status_code || res.status,
       );
     }
 

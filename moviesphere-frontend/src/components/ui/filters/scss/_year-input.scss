@@ -1,0 +1,50 @@
+.year-range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  span {
+    color: var(--text-muted);
+  }
+
+  .MuiTextField-root {
+    background: var(--surface-primary);
+    border-radius: 8px;
+
+    .MuiInputBase-input {
+      color: var(--text-primary);
+      padding: 8px 12px;
+      &:focus {
+        color: var(--accent-primary);
+      }
+    }
+
+    .MuiInputLabel-root {
+      color: var(--text-muted);
+      transition: color 0.2s;
+      &.Mui-focused {
+        color: var(--accent-primary);
+      }
+    }
+
+    .MuiOutlinedInput-root {
+      &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: var(--accent-primary);
+      }
+    }
+
+    input[type="number"] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        opacity: 0.5;
+        transition: all 0.2s;
+      }
+      &::-webkit-inner-spin-button:hover,
+      &::-webkit-outer-spin-button:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

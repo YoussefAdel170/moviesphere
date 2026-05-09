@@ -1,4 +1,3 @@
-// src/components/ui/MoviesList.tsx
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import MovieCard from "./moviecard/MovieCard";

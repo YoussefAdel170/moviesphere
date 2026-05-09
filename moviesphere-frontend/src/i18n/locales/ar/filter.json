@@ -1,0 +1,35 @@
+{
+  "btn_filters": "الفلاتر",
+  "title": "تصفية متقدمة",
+
+  "genres_title": "الأنواع",
+  "year_range_title": "سنوات الإصدار",
+  "year_from": "من",
+  "year_to": "إلى",
+
+  "stars_rating_title": "التقييم",
+  "your_rating_title": "تقييمك",
+
+  "sort_by_title": "ترتيب حسب",
+
+  "sort_by": {
+    "popularity_desc": "الأكثر شعبية",
+    "popularity_asc": "الأقل شعبية",
+
+    "release_date_desc": "الأحدث إصداراً",
+    "release_date_asc": "الأقدم إصداراً",
+
+    "rating_desc": "الأعلى تقييماً",
+    "rating_asc": "الأقل تقييماً",
+
+    "revenue_desc": "الأعلى إيرادات",
+    "revenue_asc": "الأقل إيرادات"
+  },
+
+  "clear_all": "مسح الكل",
+  "reset_local": "إعادة التعيين",
+  "apply_filters": "تطبيق الفلاتر",
+
+  "show_less": "عرض أقل",
+  "show_more": "عرض المزيد"
+}

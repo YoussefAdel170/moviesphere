@@ -1,5 +1,5 @@
 {
   "title": "Something went wrong",
-  "default_message": "We couldn't load movies right now. Try again.",
-  "retry_button": "Retry"
+  "default_message": "Unable to load movies right now. Please try again.",
+  "retry_button": "Try Again"
 }

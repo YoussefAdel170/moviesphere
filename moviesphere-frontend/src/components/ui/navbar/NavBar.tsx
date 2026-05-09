@@ -1,163 +1,108 @@
-import {
-  FiMenu,
-  FiX,
-  FiSearch,
-  FiMic,
-  FiMoon,
-  FiSun,
-  FiGlobe
-} from "react-icons/fi";
-
+// Navbar.tsx
 import { useTranslation } from "react-i18next";
-import { useNavbar } from "../../../hooks/useNavbar";
 import "./NavBar.scss";
-import Logo from "../logo/Logo";
-
-// 👇 add this
+import Logo from "./subComponents/logo/Logo";
+import MobileBurgerMenuButton from "./subComponents/mobile/menuButton";
+import MobileDrawer from "./subComponents/mobile/drawer";
+import FullSearch from "./subComponents/search/FullSearchComponent";
+import { useNavbarUI } from "../../../hooks/NavBar/useNavbarUI";
+import { useScrolled } from "../../../hooks/NavBar/useScrolled";
+import { useVoiceSearch } from "../../../hooks/NavBar/useVoiceSearch";
+import { useNavbar } from "../../../hooks/useNavbar";
+import { useSearch } from "../../../hooks/NavBar/useSeach";
+import Actions from "./subComponents/actions/Actions";
 
 export default function Navbar() {
-  const { t } = useTranslation("navbar");
-
   const {
     darkMode,
     language,
-    loading,
-    query,
-    open,
-    listening,
-    voiceError,
-    scrolled,
-    searchInputRef,
-    handleSearchChange,
-    handleVoice,
     handleToggleDarkMode,
     handleToggleLanguage,
-    handleLogoClick,
-    toggleDrawer,
+    loading,
   } = useNavbar();
 
-  const placeholder = t("search_placeholder");
-  const loadingText = t("loading");
+  const { open, toggleDrawer } = useNavbarUI();
+  const { scrolled } = useScrolled();
+
+  // SINGLE instance of useSearch
+  const {
+    query,
+    searchInputRef,
+    handleSearchChange,
+    onChangeQuery,
+    clearSearchAndGoHome, // get the clear function
+  } = useSearch();
+
+  const { listening, voiceError, handleVoice } = useVoiceSearch(
+    language,
+    onChangeQuery,
+  );
+
+  const { t } = useTranslation("navbar");
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar__container">
-
-        {/* ✅ LOGO (theme-aware) */}
-        <Logo onClick={handleLogoClick} />
+        {/* Logo - now receives onClearSearch prop */}
+        <Logo logo_aria={t("logo_aria")} onClearSearch={clearSearchAndGoHome} />
 
         {/* Desktop Search */}
-        <div className="navbar__search">
-          <div className="search-wrapper">
-            <FiSearch className="search-icon" />
-            <input
-              ref={searchInputRef}
-              type="search"
-              value={query}
-              onChange={handleSearchChange}
-              placeholder={placeholder}
-              aria-label={t("search_aria")}
-            />
-
-            <button
-              onClick={handleVoice}
-              aria-label={t("voice_aria")}
-              className={`voice-btn ${listening ? "listening" : ""}`}
-            >
-              <FiMic />
-            </button>
-          </div>
-
-          {voiceError && <div className="voice-error">{voiceError}</div>}
-          {loading && <div className="loading-indicator">{loadingText}</div>}
-        </div>
+        <FullSearch
+          searchInputRef={searchInputRef as React.RefObject<HTMLInputElement>}
+          query={query}
+          handleSearchChange={handleSearchChange}
+          handleVoice={handleVoice}
+          listening={listening}
+          voiceError={voiceError}
+          loading={loading}
+          search_placeholder={t("search_placeholder")}
+          search_text_aria={t("search_aria")}
+          voice_text_aria={t("voice_search_aria")}
+        />
 
         {/* Desktop Actions */}
-        <div className="navbar__actions">
-
-          {/* ✅ Theme toggle (your existing system) */}
-          <button onClick={handleToggleDarkMode} aria-label={t("darkmode_aria")}>
-            {darkMode ? <FiMoon /> : <FiSun />}
-          </button>
-
-          <button onClick={handleToggleLanguage} aria-label={t("language_aria")} className="d-flex gap-1">
-            <FiGlobe /> {language === "ar" ? "AR" : "EN"}
-          </button>
-        </div>
+        <Actions
+          variant="desktop"
+          darkMode={darkMode}
+          language={language}
+          handleToggleDarkMode={handleToggleDarkMode}
+          handleToggleLanguage={handleToggleLanguage}
+          darkmode_aria={t("darkmode_aria")}
+          language_aria={t("language_aria")}
+          dark_mode_text={t("dark_mode")}
+          language_text={t("language_label")}
+        />
 
         {/* Mobile Menu Button */}
-        <button
-          className="navbar__mobile"
-          onClick={toggleDrawer}
-          aria-expanded={open}
-          aria-label={t("menu_aria")}
-        >
-          {open ? <FiX /> : <FiMenu />}
-        </button>
+        <MobileBurgerMenuButton
+          toggleDrawer={toggleDrawer}
+          open={open}
+          menu_button_aria={t("menu_button_aria")}
+        />
       </div>
 
       {/* Mobile Drawer */}
-      <div className={`navbar__drawer ${open ? "open" : ""}`}>
-        <div className="drawer-content">
-
-          <div className="drawer-search">
-            <FiSearch />
-            <input
-              type="search"
-              value={query}
-              onChange={handleSearchChange}
-              placeholder={placeholder}
-              autoFocus={open}
-              aria-label={t("search_aria")}
-            />
-            <button
-              onClick={handleVoice}
-              className={`voice-btn ${listening ? "listening" : ""}`}
-            >
-              <FiMic />
-            </button>
-          </div>
-
-          <div className="drawer-actions">
-
-            <button
-              onClick={() => {
-                handleToggleDarkMode();
-                toggleDrawer();
-              }}
-              className="drawer-btn"
-            >
-              <span className="drawer-icon">
-                {darkMode ? <FiMoon /> : <FiSun />}
-              </span>
-              <span>{t("dark_mode")}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                handleToggleLanguage();
-                toggleDrawer();
-              }}
-              className="drawer-btn"
-            >
-              <span className="drawer-icon">
-                <FiGlobe />
-              </span>
-              <span>
-                {t("language_label")} ({language === "ar" ? "EN" : "AR"})
-              </span>
-            </button>
-          </div>
-
-          {voiceError && (
-            <p className="voice-error-mobile">{voiceError}</p>
-          )}
-        </div>
-      </div>
-
-      {open && (
-        <div className="navbar__overlay" onClick={toggleDrawer} />
-      )}
+      <MobileDrawer
+        open={open}
+        query={query}
+        listening={listening}
+        voiceError={voiceError}
+        handleSearchChange={handleSearchChange}
+        handleVoice={handleVoice}
+        darkMode={darkMode}
+        language={language}
+        handleToggleDarkMode={handleToggleDarkMode}
+        handleToggleLanguage={handleToggleLanguage}
+        toggleDrawer={toggleDrawer}
+        search_placeholder={t("search_placeholder")}
+        search_aria={t("search_aria")}
+        darkmode_aria={t("darkmode_aria")}
+        language_aria={t("language_aria")}
+        dark_mode_text={t("dark_mode")}
+        language_text={t("language_label")}
+        voice_text_aria={t("voice_search_aria")}
+      />
+      {open && <div className="navbar__overlay" onClick={toggleDrawer} />}
     </nav>
   );
 }

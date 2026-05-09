@@ -1,4 +1,3 @@
-// src/components/ui/skeleton/SkeletonGrid.tsx
 import MovieSkeleton from "./MovieSkeleton";
 
 type Props = {

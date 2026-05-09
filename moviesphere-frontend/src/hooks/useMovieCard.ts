@@ -8,8 +8,12 @@ type UseMovieCardProps = {
   vote_average?: number;
 };
 
-export function useMovieCard({ id, title: _title, poster_path, vote_average }: UseMovieCardProps) {
-
+export function useMovieCard({
+  id,
+  title: _title,
+  poster_path,
+  vote_average,
+}: UseMovieCardProps) {
   const [imgError, setImgError] = useState(false);
   const location = useLocation();
 

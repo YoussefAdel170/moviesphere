@@ -31,7 +31,7 @@ export default function Pagination({
       | "start-ellipsis"
       | "end-ellipsis",
     page: number | null,
-    _selected: boolean
+    _selected: boolean,
   ) => {
     switch (type) {
       case "first":

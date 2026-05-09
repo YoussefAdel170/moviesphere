@@ -1,0 +1,28 @@
+.filter-popover {
+  margin-top: 1.25rem;
+  border-radius: 20px;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  max-width: 90vw;
+  width: 360px;
+  transform-origin: top center;
+  animation: popoverFadeInScale 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  z-index: 1300;
+}
+
+.dark .filter-popover {
+  background: #1e2530;
+  border-color: var(--border-medium);
+}
+
+@keyframes popoverFadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

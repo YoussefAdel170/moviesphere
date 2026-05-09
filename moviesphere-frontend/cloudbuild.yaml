@@ -1,13 +1,13 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: "gcr.io/cloud-builders/docker"
     args:
-      - 'build'
-      - '--build-arg'
-      - 'VITE_API_BASE_URL=${_VITE_API_BASE_URL}'
-      - '--build-arg'
-      - 'VITE_API_KEY=${_VITE_API_KEY}'
-      - '-t'
-      - 'gcr.io/moviesphere-fullstack/moviesphere-frontend'
-      - '.'
+      - "build"
+      - "--build-arg"
+      - "VITE_API_BASE_URL=${_VITE_API_BASE_URL}"
+      - "--build-arg"
+      - "VITE_API_KEY=${_VITE_API_KEY}"
+      - "-t"
+      - "gcr.io/moviesphere-fullstack/moviesphere-frontend"
+      - "."
 images:
-  - 'gcr.io/moviesphere-fullstack/moviesphere-frontend'
+  - "gcr.io/moviesphere-fullstack/moviesphere-frontend"

@@ -1,20 +1,20 @@
 // src/pages/SimilarMoviesPage.tsx
-import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { FiArrowLeft } from 'react-icons/fi';
+import { useParams, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { FiArrowLeft } from "react-icons/fi";
 
-import MovieCard from '../components/ui/moviecard/MovieCard';
-import Pagination from '../components/ui/pagination/Pagination';
-import SkeletonGrid from '../components/ui/SkeletonGrid';
+import MovieCard from "../components/ui/moviecard/MovieCard";
+import Pagination from "../components/ui/pagination/Pagination";
+import SkeletonGrid from "../components/ui/SkeletonGrid";
 
-import { useSimilarMoviesPage } from '../hooks/useSimilarMoviesPage';
-import './SimilarMoviesPage.scss';
-import { normalizeMovie } from '../utils/normalizeMovie';
+import { useSimilarMoviesPage } from "../hooks/useSimilarMoviesPage";
+import "./SimilarMoviesPage.scss";
+import { normalizeMovie } from "../utils/normalizeMovie";
 
 export default function SimilarMoviesPage() {
   const { id } = useParams();
-  const { t } = useTranslation('similarMoviesPage');
+  const { t } = useTranslation("similarMoviesPage");
 
   const {
     movies,
@@ -40,15 +40,16 @@ export default function SimilarMoviesPage() {
         {/* HEADER */}
         <div className="header">
           <Link to={`/movie/${id}`} className="back-link">
-            <FiArrowLeft /> {t('back_link', { title: movieTitle || t('movie') })}
+            <FiArrowLeft />{" "}
+            {t("back_link", { title: movieTitle || t("movie") })}
           </Link>
-          <h1>{t('page_title', { title: movieTitle })}</h1>
+          <h1>{t("page_title", { title: movieTitle })}</h1>
         </div>
 
         {/* CONTENT WRAPPER */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${id}-${page}-${loading ? 'loading' : error ? 'error' : 'data'}`}
+            key={`${id}-${page}-${loading ? "loading" : error ? "error" : "data"}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -59,13 +60,11 @@ export default function SimilarMoviesPage() {
 
             {/* ERROR */}
             {!loading && error && (
-              <div className="similar-error">{t('error')}</div>
+              <div className="similar-error">{t("error")}</div>
             )}
 
             {/* EMPTY */}
-            {isEmpty && (
-              <p className="no-results">{t('no_results')}</p>
-            )}
+            {isEmpty && <p className="no-results">{t("no_results")}</p>}
 
             {/* CONTENT */}
             {hasMovies && (
@@ -86,7 +85,6 @@ export default function SimilarMoviesPage() {
                       />
                     );
                   })}
-           
                 </div>
 
                 {totalPages > 1 && (

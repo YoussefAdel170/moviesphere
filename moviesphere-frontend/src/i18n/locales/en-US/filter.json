@@ -1,0 +1,35 @@
+{
+  "btn_filters": "Filters",
+  "title": "Advanced Filters",
+
+  "genres_title": "Genres",
+  "year_range_title": "Release Years",
+  "year_from": "From",
+  "year_to": "To",
+
+  "stars_rating_title": "Rating",
+  "your_rating_title": "Your Rating",
+
+  "sort_by_title": "Sort By",
+
+  "sort_by": {
+    "popularity_desc": "Most Popular",
+    "popularity_asc": "Least Popular",
+
+    "release_date_desc": "Newest First",
+    "release_date_asc": "Oldest First",
+
+    "rating_desc": "Highest Rated",
+    "rating_asc": "Lowest Rated",
+
+    "revenue_desc": "Highest Revenue",
+    "revenue_asc": "Lowest Revenue"
+  },
+
+  "clear_all": "Clear All",
+  "reset_local": "Reset",
+  "apply_filters": "Apply Filters",
+
+  "show_less": "Show Less",
+  "show_more": "Show More"
+}

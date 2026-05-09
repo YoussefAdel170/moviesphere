@@ -1,10 +1,15 @@
 // src/hooks/useMovieDetails.ts
-import { useEffect, useState } from 'react';
-import { moviesApi } from '../services/moviesApi';
-import { useAppSelector } from '../redux/hooks';
+import { useEffect, useState } from "react";
+import { moviesApi } from "../services/moviesApi";
+import { useAppSelector } from "../redux/hooks";
 
 type Genre = { id: number; name: string };
-type ProductionCompany = { id: number; logo_path: string | null; name: string; origin_country: string };
+type ProductionCompany = {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+};
 type Movie = {
   id: number;
   title: string;
@@ -46,7 +51,7 @@ export function useMovieDetails(id: string | undefined) {
 
     Promise.all([
       moviesApi.details(Number(id), language),
-      moviesApi.getSimilar(Number(id), 1, language)
+      moviesApi.getSimilar(Number(id), 1, language),
     ])
       .then(([movieData, similarData]) => {
         if (isMounted) {
@@ -61,15 +66,17 @@ export function useMovieDetails(id: string | undefined) {
         if (isMounted) setLoading(false);
       });
 
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [id, language]);
 
   const formatCurrency = (value: number) => {
-    if (value === 0) return 'N/A';
-    return new Intl.NumberFormat(language === 'ar' ? 'ar-EG' : 'en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
+    if (value === 0) return "N/A";
+    return new Intl.NumberFormat(language === "ar" ? "ar-EG" : "en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
     }).format(value);
   };
 

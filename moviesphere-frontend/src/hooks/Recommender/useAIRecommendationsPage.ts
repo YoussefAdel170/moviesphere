@@ -75,17 +75,18 @@ export function useAIRecommendationsPage(id: string | undefined) {
         const moviesWithDetails = await Promise.all(
           aiData.results.map(async (rec: any) => {
             const searchRes = await moviesApi.search(rec.title, language);
-            const found = searchRes.results?.find(
-              (m: any) => new Date(m.release_date).getFullYear() === rec.year
-            ) || searchRes.results?.[0];
+            const found =
+              searchRes.results?.find(
+                (m: any) => new Date(m.release_date).getFullYear() === rec.year,
+              ) || searchRes.results?.[0];
             return found;
-          })
+          }),
         );
 
         // 4. Filter nulls and deduplicate by ID
         const validMovies = moviesWithDetails.filter(Boolean);
         const unique = Array.from(
-          new Map(validMovies.map((m: any) => [m.id, m])).values()
+          new Map(validMovies.map((m: any) => [m.id, m])).values(),
         );
 
         // 5. Paginate

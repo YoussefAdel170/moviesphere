@@ -1,0 +1,106 @@
+.tooltip {
+  position: relative;
+  display: inline-flex;
+
+  &__content {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 0.75rem;
+
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease;
+
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  /* Arrow base */
+  &__content::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  /* ================= TOP ================= */
+  &--top .tooltip__content {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+  }
+
+  &--top .tooltip__content::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.85);
+  }
+
+  /* ================= BOTTOM ================= */
+  &--bottom .tooltip__content {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+  }
+
+  &--bottom .tooltip__content::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.85);
+  }
+
+  /* ================= LEFT ================= */
+  &--left .tooltip__content {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+  }
+
+  &--left .tooltip__content::after {
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid rgba(0, 0, 0, 0.85);
+  }
+
+  /* ================= RIGHT ================= */
+  &--right .tooltip__content {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
+  }
+
+  &--right .tooltip__content::after {
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid rgba(0, 0, 0, 0.85);
+  }
+
+  /* SHOW ON HOVER (shared) */
+  &:hover .tooltip__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  &--left:hover .tooltip__content,
+  &--right:hover .tooltip__content {
+    transform: translateY(-50%) translateX(0);
+  }
+}

@@ -4,18 +4,14 @@
   "back": "رجوع",
   "home": "الرئيسية",
   "official_site": "الموقع الرسمي",
-  "view_all": "عرض الكل ←",
-  "back_button": "رجوع",
-  "home_button": "الرئيسية",
-  "back_aria": "رجوع",
-  "home_aria": "الرئيسية",
+  "view_all": "عرض الكل",
 
+  "back_aria": "العودة",
+  "home_aria": "الانتقال إلى الرئيسية",
 
   "grid_aria": "قائمة الأفلام",
   "empty_message": "لا توجد أفلام لعرضها",
   "no_movies": "لم يتم العثور على أفلام.",
 
-    "search_results": "نتائج البحث عن: {{query}}"
-
-
+  "search_results": "نتائج البحث: {{query}}"
 }

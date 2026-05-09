@@ -1,0 +1,28 @@
+{
+  "genres": "Genres",
+
+  "show_less": "Show Less",
+  "show_more": "Show More",
+
+  "genre": {
+    "action": "Action",
+    "adventure": "Adventure",
+    "animation": "Animation",
+    "comedy": "Comedy",
+    "crime": "Crime",
+    "documentary": "Documentary",
+    "drama": "Drama",
+    "family": "Family",
+    "fantasy": "Fantasy",
+    "history": "History",
+    "horror": "Horror",
+    "music": "Music",
+    "mystery": "Mystery",
+    "romance": "Romance",
+    "sci_fi": "Sci-Fi",
+    "tv_movie": "TV Movie",
+    "thriller": "Thriller",
+    "war": "War",
+    "western": "Western"
+  }
+}

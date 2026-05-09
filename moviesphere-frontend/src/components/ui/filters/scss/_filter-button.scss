@@ -1,0 +1,66 @@
+.movie-filters {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  rtl & {
+    flex-direction: row-reverse;
+  }
+}
+
+.filter-trigger {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+
+.filter-button {
+  text-transform: none;
+  font-weight: 500;
+  background: var(--surface-secondary);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+  transition: all 0.2s;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+  &:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent-primary);
+  }
+}
+
+[dir="rtl"] .MuiButton-icon.MuiButton-startIcon {
+  margin-right: 0px;
+}
+
+[dir="rtl"] .MuiButton-icon.MuiButton-endIcon {
+  margin-left: 0px;
+}
+
+.filter-trigger--open .filter-button {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+  &:hover {
+    background: color-mix(in srgb, var(--accent-primary) 85%, black);
+    border-color: color-mix(in srgb, var(--accent-primary) 85%, black);
+  }
+}
+
+.MuiBadge-badge {
+  z-index: 4 !important;
+}
+
+[dir="rtl"] .MuiBadge-badge {
+  right: auto;
+  left: -1rem;
+}
+
+@media ((max-width: 728px) and (min-width: 600px)) {
+  .movie-filters {
+    gap: 1rem;
+  }
+}

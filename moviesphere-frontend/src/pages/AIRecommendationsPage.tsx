@@ -1,19 +1,19 @@
-import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { FiArrowLeft } from 'react-icons/fi';
+import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { FiArrowLeft } from "react-icons/fi";
 
-import MovieCard from '../components/ui/moviecard/MovieCard';
-import Pagination from '../components/ui/pagination/Pagination';
+import MovieCard from "../components/ui/moviecard/MovieCard";
+import Pagination from "../components/ui/pagination/Pagination";
 
-import './AIRecommendationsPage.scss';
-import { useAIRecommendationsPage } from '../hooks/Recommender/useAIRecommendationsPage';
-import SkeletonGrid from '../components/ui/SkeletonGrid';
-import { normalizeMovie } from '../utils/normalizeMovie';
+import "./AIRecommendationsPage.scss";
+import { useAIRecommendationsPage } from "../hooks/Recommender/useAIRecommendationsPage";
+import SkeletonGrid from "../components/ui/SkeletonGrid";
+import { normalizeMovie } from "../utils/normalizeMovie";
 
 export default function AIRecommendationsPage() {
   const { id } = useParams();
-  const { t } = useTranslation('aiRecommendations');
+  const { t } = useTranslation("aiRecommendations");
 
   const {
     recommendations,
@@ -49,16 +49,14 @@ export default function AIRecommendationsPage() {
       >
         <div className="container">
           <div className="text-center py-10">
-            <p className="text-red-500 font-semibold">
-              {t('error')}
-            </p>
+            <p className="text-red-500 font-semibold">{t("error")}</p>
 
             <Link
               to={`/movie/${id}`}
               className="mt-4 inline-flex items-center gap-2 text-accent-primary"
             >
               <FiArrowLeft />
-              {t('back_link', { title: movieTitle || t('movie') })}
+              {t("back_link", { title: movieTitle || t("movie") })}
             </Link>
           </div>
         </div>
@@ -74,21 +72,19 @@ export default function AIRecommendationsPage() {
       exit={{ opacity: 0 }}
     >
       <div className="container">
-
         {/* HEADER (UNCHANGED) */}
         <div className="header">
           <Link to={`/movie/${id}`} className="back-link">
-            <FiArrowLeft /> {t('back_link', { title: movieTitle || t('movie') })}
+            <FiArrowLeft />{" "}
+            {t("back_link", { title: movieTitle || t("movie") })}
           </Link>
 
-          <h1>
-            {t('page_title', { title: movieTitle })}
-          </h1>
+          <h1>{t("page_title", { title: movieTitle })}</h1>
         </div>
 
         {/* EMPTY STATE (same logic, slightly safer) */}
         {recommendations.results.length === 0 ? (
-          <p className="no-results">{t('no_results')}</p>
+          <p className="no-results">{t("no_results")}</p>
         ) : (
           <>
             {/* GRID (UNCHANGED) */}
@@ -121,7 +117,6 @@ export default function AIRecommendationsPage() {
             )}
           </>
         )}
-
       </div>
     </motion.div>
   );

@@ -1,13 +1,18 @@
 {
-  "search_placeholder": "ابحث عن أفلام...",
-  "search_aria": "البحث عن أفلام",
+  "search_placeholder": "ابحث عن فيلم...",
+  "search_aria": "البحث عن الأفلام",
+
   "clear_aria": "مسح البحث",
-  "voice_aria": "البحث الصوتي",
-  "darkmode_aria": "تبديل الوضع المظلم",
-  "language_aria": "تبديل اللغة",
-  "menu_aria": "القائمة",
-  "logo_aria": "الذهاب إلى الصفحة الرئيسية",
+  "voice_search_aria": "البحث الصوتي",
+
+  "darkmode_aria": "تبديل الوضع الداكن",
+  "language_aria": "تغيير اللغة",
+
+  "menu_aria": "فتح القائمة",
+  "logo_aria": "الانتقال إلى الرئيسية",
+
   "loading": "جاري التحميل...",
-  "dark_mode": "الوضع المظلم",
+
+  "dark_mode": "الوضع الداكن",
   "language_label": "اللغة"
 }

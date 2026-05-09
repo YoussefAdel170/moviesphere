@@ -1,6 +1,6 @@
 {
-  "first_page": "First page",
-  "last_page": "Last page (page {{totalPages}})",
-  "next_page": "Next page",
-  "previous_page": "Previous page"
+  "first_page": "Go to first page",
+  "last_page": "Go to last page ({{totalPages}})",
+  "next_page": "Go to next page",
+  "previous_page": "Go to previous page"
 }

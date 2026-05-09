@@ -1,7 +1,6 @@
-// src/utils/genreMap.ts
 import type { TFunction } from "i18next";
 
-const genreTranslationKeys: Record<number, string> = {
+export const genreTranslationKeys: Record<number, string> = {
   28: "genre.action",
   12: "genre.adventure",
   16: "genre.animation",

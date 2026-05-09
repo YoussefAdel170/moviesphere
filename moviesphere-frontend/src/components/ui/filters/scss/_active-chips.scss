@@ -1,0 +1,55 @@
+.active-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  justify-content: center;
+
+  .filter-chip {
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    transition: all 0.2s;
+
+    .MuiChip-deleteIcon {
+      color: var(--text-muted);
+      transition:
+        color 0.2s,
+        transform 0.1s;
+      &:hover {
+        color: color-mix(in srgb, var(--accent-primary) 85%, black);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .clear-all {
+    background: var(--accent-secondary) !important;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: color-mix(
+        in srgb,
+        var(--accent-secondary) 85%,
+        black
+      ) !important;
+    }
+
+    .MuiChip-label {
+      padding: 0 10px;
+    }
+
+    .MuiChip-deleteIcon {
+      color: white !important;
+      &:hover {
+        color: #f0f0f0 !important;
+      }
+    }
+  }
+}

@@ -1,13 +1,18 @@
 {
-  "search_placeholder": "Search movies...",
+  "search_placeholder": "Search for movies...",
   "search_aria": "Search movies",
+
   "clear_aria": "Clear search",
-  "voice_aria": "Voice search",
+  "voice_search_aria": "Voice search",
+
   "darkmode_aria": "Toggle dark mode",
-  "language_aria": "Toggle language",
-  "menu_aria": "Menu",
+  "language_aria": "Change language",
+
+  "menu_aria": "Open menu",
   "logo_aria": "Go to homepage",
+
   "loading": "Loading...",
+
   "dark_mode": "Dark Mode",
   "language_label": "Language"
 }

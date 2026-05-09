@@ -1,83 +1,73 @@
+// src/redux/features/movies/moviesThunks.ts
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { moviesApi } from "../../../services/moviesApi";
+import type { FilterState } from "./movieSlice";
+import { TMDB_MIN_YEAR } from "../../../constants/general";
 
-// ================= TYPES =================
-interface AIRecommendResponse {
-  results: Array<{ title: string; year: number }>;
-}
-
-interface AIRecommendParams {
-  title: string;
-  year: number;
-  genres: string;
-  overview: string;
-  language: string;
-  limit?: number;
-}
-
-// ================= POPULAR =================
+// ============= Fetch Popular Movies =============
 export const fetchPopularMovies = createAsyncThunk(
-  "movies/fetchPopularMovies",
-  async (
-    { page, language }: { page: number; language: string },
-    { rejectWithValue }
-  ) => {
+  "movies/fetchPopular",
+  async ({ page, language }: { page: number; language: string }, thunkAPI) => {
     try {
-      return await moviesApi.getPopular(page, language);
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+      const data = await moviesApi.getPopular(page, language);
+      return data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
-// ================= SEARCH =================
+// ============= Search Movies =============
 export const searchMovies = createAsyncThunk(
-  "movies/searchMovies",
+  "movies/search",
   async (
     { query, language }: { query: string; language: string },
-    { rejectWithValue }
+    thunkAPI,
   ) => {
     try {
-      return await moviesApi.search(query, language);
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+      if (!query.trim()) return { results: [] };
+      const data = await moviesApi.search(query, language);
+      return data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
-// ================= AI RECOMMENDATIONS =================
-export const fetchAIRecommendations = createAsyncThunk<
-  Array<{ title: string; year: number }>,
-  AIRecommendParams,
-  { rejectValue: string }
->(
-  "movies/fetchAIRecommendations",
+// ============= Fetch Movies with Filters =============
+export const fetchMoviesWithFilters = createAsyncThunk(
+  "movies/fetchMoviesWithFilters",
   async (
-    { title, year, genres, overview, language }, // ← language added
-    { rejectWithValue }
+    {
+      page,
+      language,
+      filters,
+    }: { page: number; language: string; filters: FilterState },
+    thunkAPI,
   ) => {
     try {
-      const response = await fetch("/api/ai-recommend", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title,
-          year,
-          genres,
-          overview,
-          language,          // ← pass language to backend
-          limit: 20,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`AI backend error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.results || [];
-    } catch (error: any) {
-      return rejectWithValue(error.message || "AI fetch failed");
+      const params = new URLSearchParams();
+      params.append("page", String(page));
+      params.append("language", language);
+      params.append("sort_by", filters.sortBy);
+      if (filters.genres.length)
+        params.append("with_genres", filters.genres.join(","));
+      if (filters.voteAverage > 0)
+        params.append("vote_average.gte", String(filters.voteAverage));
+      if (filters.yearRange[0] > TMDB_MIN_YEAR)
+        params.append(
+          "primary_release_date.gte",
+          `${filters.yearRange[0]}-01-01`,
+        );
+      if (filters.yearRange[1] < new Date().getFullYear())
+        params.append(
+          "primary_release_date.lte",
+          `${filters.yearRange[1]}-12-31`,
+        );
+      const data = await moviesApi.discover(params.toString());
+      return data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );

@@ -1,4 +1,8 @@
-// src/components/ui/navbar/NavBar.scss
+@use "scss/logo";
+@use "scss/search";
+@use "scss/actions";
+@use "scss/drawer";
+@use "scss/overlay";
 
 .navbar {
   position: fixed;
@@ -9,9 +13,7 @@
 
   background: var(--navbar-bg);
   backdrop-filter: blur(18px);
-
   border-bottom: 1px solid var(--border-light);
-
   transition: all var(--transition-fast, 0.25s ease);
 
   &.scrolled {
@@ -19,334 +21,24 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* =========================
-     CONTAINER
-  ========================= */
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 12px 22px;
     max-width: 1400px;
     margin: 0 auto;
   }
 
-  /* =========================
-     LOGO
-  ========================= */
-  &__logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-weight: 700;
-    font-size: 1.25rem;
-
-    color: var(--text-primary);
-    cursor: pointer;
-
-    transition: all var(--transition-fast, 0.2s ease);
-
-    &:hover {
-      transform: scale(1.03);
-      color: var(--accent-primary);
-    }
-  }
-
-  /* =========================
-     SEARCH (DESKTOP)
-  ========================= */
-  &__search {
-    flex: 1;
-    margin: 0 20px;
-    position: relative;
-
-    .search-wrapper {
-      display: flex;
-      align-items: center;
-
-      height: 36px;
-      padding: 0 12px;
-
-      background: var(--surface-secondary);
-      border: 1px solid var(--border-light);
-
-      border-radius: 999px;
-
-      transition: all var(--transition-fast, 0.2s ease);
-
-      &:focus-within {
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-      }
-
-      .search-icon {
-        color: var(--text-muted);
-        margin-right: 6px;
-        font-size: 0.9rem;
-      }
-
-      input {
-        flex: 1;
-        background: transparent;
-        border: none;
-        outline: none;
-
-        color: var(--text-primary);
-        font-size: 0.85rem;
-
-        &::placeholder {
-          color: var(--text-muted);
-        }
-      }
-
-      .clear-btn,
-      .voice-btn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-
-        color: var(--text-muted);
-
-        transition: all var(--transition-fast, 0.2s ease);
-
-        &:hover {
-          color: var(--accent-primary);
-          transform: scale(1.1);
-        }
-      }
-
-      .voice-btn.listening {
-        color: var(--accent-secondary);
-        animation: pulse 1.2s infinite;
-      }
-    }
-
-    .voice-error,
-    .loading-indicator {
-      position: absolute;
-      top: 100%;
-      left: 0;
-
-      margin-top: 6px;
-      font-size: 0.75rem;
-
-      background: var(--surface-primary);
-      border: 1px solid var(--border-light);
-
-      color: var(--accent-secondary);
-
-      padding: 4px 10px;
-      border-radius: 999px;
-
-      box-shadow: var(--shadow-sm);
-    }
-  }
-
-  /* =========================
-     ACTIONS (DESKTOP)
-  ========================= */
-  &__actions {
-    display: flex;
-    gap: 10px;
-
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 7px 10px;
-
-      background: var(--surface-secondary);
-      border: 1px solid var(--border-light);
-
-      border-radius: 10px;
-
-      color: var(--text-primary);
-
-      cursor: pointer;
-
-      transition: all var(--transition-fast, 0.2s ease);
-
-      &:hover {
-        background: var(--surface-hover);
-        border-color: var(--accent-primary);
-        transform: translateY(-2px);
-      }
-    }
-  }
-
-  /* =========================
-     MOBILE BUTTON
-  ========================= */
   &__mobile {
     display: none;
-
     background: none;
     border: none;
-
     color: var(--text-primary);
     font-size: 1.6rem;
-
     cursor: pointer;
   }
 
-  /* =========================
-     DRAWER
-  ========================= */
-  &__drawer {
-    position: fixed;
-    right: 0;
-    top: 0;
-
-    width: 80%;
-    max-width: 340px;
-    height: 100vh;
-
-    background: var(--surface-primary);
-    border-left: 1px solid var(--border-light);
-
-    backdrop-filter: blur(20px);
-
-    padding: 16px;
-
-    transform: translateX(100%);
-    transition: transform var(--transition-fast, 0.25s ease);
-
-    z-index: 10000;
-
-    &.open {
-      transform: translateX(0);
-    }
-
-    .drawer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    /* =========================
-       FIXED MOBILE SEARCH UX
-    ========================= */
-    .drawer-search {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      padding: 0px 12px;
-
-      background: var(--surface-secondary);
-      border: 1px solid var(--border-light);
-
-      border-radius: 999px;
-
-      transition: all var(--transition-fast, 0.2s ease);
-
-      &:focus-within {
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-      }
-
-      input {
-        flex: 1;
-        height: 100%;
-
-        background: transparent;
-        border: none;
-        outline: none;
-
-        color: var(--text-primary);
-        font-size: 0.9rem;
-
-        &::placeholder {
-          color: var(--text-muted);
-        }
-      }
-
-      .voice-btn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: var(--text-muted);
-
-        padding: 4px;
-
-        transition: all var(--transition-fast, 0.2s ease);
-
-        &:hover {
-          color: var(--accent-primary);
-          transform: scale(1.1);
-        }
-
-        &.listening {
-          color: var(--accent-secondary);
-          animation: pulse 1s infinite;
-        }
-      }
-    }
-
-    /* =========================
-       DRAWER ACTIONS (FIXED UX)
-    ========================= */
-    .drawer-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-top: 10px;
-    }
-
-    .drawer-btn {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      width: 100%;
-
-      padding: 10px 14px;
-
-      background: var(--surface-secondary);
-      border: 1px solid var(--border-light);
-
-      border-radius: 12px;
-
-      color: var(--text-primary);
-
-      cursor: pointer;
-
-      transition: all var(--transition-fast, 0.2s ease);
-
-      font-size: 0.95rem;
-
-      &:hover {
-        background: var(--surface-hover);
-        border-color: var(--accent-primary);
-        transform: translateX(4px);
-      }
-    }
-  }
-
-  /* =========================
-     OVERLAY
-  ========================= */
-  &__overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(2px);
-
-    z-index: 9999;
-  }
-
-  /* =========================
-     MOBILE RULE
-  ========================= */
   @media (max-width: 768px) {
     &__search,
     &__actions {
@@ -359,11 +51,14 @@
   }
 }
 
-/* =========================
-   ANIMATION
-========================= */
 @keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }

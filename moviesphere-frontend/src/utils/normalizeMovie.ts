@@ -5,9 +5,6 @@ export function normalizeMovie(movie: any) {
     poster_path: movie.poster_path || null,
     vote_average: movie.vote_average || 0,
     overview: movie.overview || "No description available",
-    genre_ids:
-      movie.genre_ids ||
-      movie.genres?.map((g: any) => g.id) ||
-      [],
+    genre_ids: movie.genre_ids || movie.genres?.map((g: any) => g.id) || [],
   };
 }

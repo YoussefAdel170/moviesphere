@@ -1,19 +1,27 @@
 {
   "loading": "Loading...",
   "not_found": "Movie not found",
-  "back_button": "Back",
+
+  "back": "Back",
   "back_aria": "Go back",
-  "home_button": "Home",
+
+  "home": "Home",
   "home_aria": "Go to homepage",
+
   "official_site": "Official Site",
-  "poster_alt": "Poster for {{title}}",
+
+  "poster_alt": "{{title}} movie poster",
+
   "votes": "{{count}} votes",
+
   "overview": "Overview",
   "budget": "Budget",
   "revenue": "Revenue",
   "original_language": "Original Language",
   "status": "Status",
   "production_companies": "Production Companies",
-  "tmdb_recommends": "🎬 TMDB Recommends",
+
+  "tmdb_recommends": "🎬 Recommended by TMDB",
+
   "view_more": "View More"
 }

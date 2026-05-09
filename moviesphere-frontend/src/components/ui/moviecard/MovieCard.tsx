@@ -28,18 +28,13 @@ function MovieCard({
 }: Props) {
   const { t } = useTranslation("movieCard");
 
-  const {
-    posterUrl,
-    showFallback,
-    rating,
-    to,
-    handleImageError,
-  } = useMovieCard({
-    id,
-    title,
-    poster_path,
-    vote_average,
-  });
+  const { posterUrl, showFallback, rating, to, handleImageError } =
+    useMovieCard({
+      id,
+      title,
+      poster_path,
+      vote_average,
+    });
 
   // ✅ Use the translated utility
   const genres = useMemo(() => {

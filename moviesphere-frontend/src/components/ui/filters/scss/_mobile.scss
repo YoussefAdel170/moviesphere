@@ -1,0 +1,27 @@
+@media (max-width: 600px) {
+  .movie-filters {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    // justify-content: center;
+    // flex-direction: column;
+    // gap: 1rem;
+  }
+
+  .filter-trigger {
+    display: flex;
+    align-self: start;
+  }
+
+  .filter-popover {
+    width: 95vw;
+    max-width: 95vw;
+  }
+  .filter-popover-content {
+    max-height: 70vh;
+  }
+  .star-rating-filter .star-wrapper {
+    font-size: 1.4rem;
+  }
+}

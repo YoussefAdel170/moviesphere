@@ -1,0 +1,32 @@
+.star-rating-filter {
+  margin-top: 8px;
+  .stars {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .star-wrapper {
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1.8rem;
+    transition: transform 0.1s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    .star {
+      color: var(--text-muted);
+      transition: color 0.1s;
+      &.full,
+      &.half {
+        color: var(--accent-primary);
+      }
+    }
+  }
+  .star-wrapper:hover .star {
+    color: var(--accent-primary);
+  }
+  .rating-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+}
