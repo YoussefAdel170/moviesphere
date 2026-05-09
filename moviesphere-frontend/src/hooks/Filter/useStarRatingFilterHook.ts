@@ -4,6 +4,7 @@ import type { MouseEvent } from "react";
 export function useStarRatingFilter(
   value: number,
   onChange: (val: number) => void,
+  isRtl: boolean = false, // 👈 new parameter
 ) {
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
@@ -34,7 +35,6 @@ export function useStarRatingFilter(
     }
 
     const newRating = starValue * 2;
-
     onChange(newRating);
   };
 
@@ -43,10 +43,11 @@ export function useStarRatingFilter(
     event: MouseEvent<HTMLElement>,
   ) => {
     const rect = event.currentTarget.getBoundingClientRect();
-
     const mouseX = event.clientX - rect.left;
+    const width = rect.width;
 
-    const isHalf = mouseX < rect.width / 2;
+    // 👇 RTL‑aware half detection
+    const isHalf = isRtl ? mouseX > width / 2 : mouseX < width / 2;
 
     let starValue = starIndex + 1;
 

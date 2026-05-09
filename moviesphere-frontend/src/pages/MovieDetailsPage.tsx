@@ -64,14 +64,14 @@ export default function MovieDetailsPage() {
               onClick={() => navigate(-1)}
               aria-label={t("common:back_aria")}
             >
-              <FiArrowLeft /> {t("common:back_button")}
+              <FiArrowLeft /> {t("common:back")}
             </button>
             <Link
               to="/"
               className="home-button"
               aria-label={t("common:home_aria")}
             >
-              <FiHome /> {t("common:home_button")}
+              <FiHome /> {t("common:home")}
             </Link>
             {movie.homepage && (
               <a

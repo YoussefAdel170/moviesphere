@@ -4,10 +4,11 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export function StarRatingFilter({ value, onChange }: StarRatingFilterProps) {
-  const { getStarState, handleStarClick, handleMouseMove, handleMouseLeave } =
-    useStarRatingFilter(value, onChange);
+  const { t, i18n } = useTranslation("filter");
+  const isRtl = i18n.language === "ar"; // 👈 detect Arabic
 
-  const { t } = useTranslation("filter");
+  const { getStarState, handleStarClick, handleMouseMove, handleMouseLeave } =
+    useStarRatingFilter(value, onChange, isRtl); // 👈 pass flag
 
   const renderStar = (starIndex: number) => {
     const state = getStarState(starIndex);
@@ -17,7 +18,11 @@ export function StarRatingFilter({ value, onChange }: StarRatingFilterProps) {
     }
 
     if (state === "half") {
-      return <FaStarHalfAlt className="star half" />;
+      return (
+        <FaStarHalfAlt
+          className={`star half ${isRtl ? "rtl-flip" : ""}`} // 👈 flip for RTL
+        />
+      );
     }
 
     return <FaRegStar className="star empty" />;
@@ -33,8 +38,10 @@ export function StarRatingFilter({ value, onChange }: StarRatingFilterProps) {
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const mouseX = e.clientX - rect.left;
-              const isHalf = mouseX < rect.width / 2;
-
+              // 👇 RTL‑aware half detection for click
+              const isHalf = isRtl
+                ? mouseX > rect.width / 2
+                : mouseX < rect.width / 2;
               handleStarClick(i, isHalf);
             }}
             onMouseMove={(e) => handleMouseMove(i, e)}

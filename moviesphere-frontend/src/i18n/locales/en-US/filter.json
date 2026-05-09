@@ -1,5 +1,8 @@
 {
   "btn_filters": "Filters",
+  "btn_filters_aria": "Open filters",
+  "close_aria": "Close filters",
+
   "title": "Advanced Filters",
 
   "genres_title": "Genres",
@@ -11,25 +14,32 @@
   "your_rating_title": "Your Rating",
 
   "sort_by_title": "Sort By",
+  "sort_by_aria": "Sort movies",
 
   "sort_by": {
     "popularity_desc": "Most Popular",
     "popularity_asc": "Least Popular",
-
+    "vote_average_desc": "Top Rated",
+    "vote_average_asc": "Lowest Rated",
     "release_date_desc": "Newest First",
     "release_date_asc": "Oldest First",
-
-    "rating_desc": "Highest Rated",
-    "rating_asc": "Lowest Rated",
-
-    "revenue_desc": "Highest Revenue",
-    "revenue_asc": "Lowest Revenue"
+    "revenue_desc": "Highest Revenue"
   },
 
   "clear_all": "Clear All",
   "reset_local": "Reset",
   "apply_filters": "Apply Filters",
 
+  "apply_filters_aria": "Apply selected filters",
+  "reset_aria": "Reset all filters",
+  "remove_filter": "Remove filter",
+  "genre_filter": "Genre filter",
+  "rating_filter": "Rating filter",
+
   "show_less": "Show Less",
-  "show_more": "Show More"
+  "show_more": "Show More",
+  "remove_filter_with_value": "Remove {{value}} filter",
+  "remove_year_filter": "Remove release year filter",
+  "remove_rating_filter": "Remove rating filter",
+  "remove_sort_filter": "Remove sorting filter"
 }

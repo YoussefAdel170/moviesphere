@@ -60,7 +60,7 @@ export default function Actions({
         <TooltipComponent title={language_aria}>
           <button onClick={onLanguage} aria-label={language_aria}>
             <FiGlobe />
-            {language.toUpperCase()}
+            {language === "ar" ? "English" : "العربية"}
           </button>
         </TooltipComponent>
       </div>

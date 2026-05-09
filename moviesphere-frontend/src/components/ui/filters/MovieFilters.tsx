@@ -16,6 +16,7 @@ import { GenreFilter } from "./subComponents/GenreFilter";
 import { YearRangeFilter } from "./subComponents/YearRangeFilter";
 import { useMovieFilters } from "../../../hooks/Filter/useMovieFilter";
 import { useTranslation } from "react-i18next";
+import TooltipComponent from "../helper/tooltip/TooltipComponent";
 
 // ----------------------------------------------------------------------
 // Main Filter Component
@@ -70,18 +71,20 @@ export default function MovieFilters() {
   return (
     <div className="movie-filters">
       {/* Filter Trigger */}
-      <div className={`filter-trigger ${open ? "filter-trigger--open" : ""}`}>
-        <Badge badgeContent={activeFilterCount()} color="primary">
-          <Button
-            variant="outlined"
-            startIcon={<FilterList />}
-            onClick={handleOpen}
-            className="filter-button"
-          >
-            {t("btn_filters")}
-          </Button>
-        </Badge>
-      </div>
+      <TooltipComponent position="bottom" title={t("btn_filters_aria")}>
+        <div className={`filter-trigger ${open ? "filter-trigger--open" : ""}`}>
+          <Badge badgeContent={activeFilterCount()} color="primary">
+            <Button
+              variant="outlined"
+              startIcon={<FilterList />}
+              onClick={handleOpen}
+              className="filter-button"
+            >
+              {t("btn_filters")}
+            </Button>
+          </Badge>
+        </div>
+      </TooltipComponent>
 
       {/* Filter Popover */}
       <Popover
@@ -109,9 +112,11 @@ export default function MovieFilters() {
             <h4>{t("title")}</h4>
 
             {/* Close Button */}
-            <IconButton size="small" onClick={handleClose}>
-              <Close />
-            </IconButton>
+            <TooltipComponent position="bottom" title={t("close_aria")}>
+              <IconButton size="small" onClick={handleClose}>
+                <Close />
+              </IconButton>
+            </TooltipComponent>
           </div>
 
           {/* Filter Content */}
@@ -153,7 +158,6 @@ export default function MovieFilters() {
             {/* Sort */}
             <div className="filter-section">
               <label>{t("sort_by_title")}</label>
-
               <Select
                 fullWidth
                 value={localSortBy}
@@ -165,7 +169,7 @@ export default function MovieFilters() {
                 </MenuItem>
 
                 <MenuItem value="vote_average.desc">
-                  {t("sort_by.rating_desc")}
+                  {t("sort_by.vote_average_desc")}
                 </MenuItem>
 
                 <MenuItem value="release_date.desc">
@@ -181,18 +185,22 @@ export default function MovieFilters() {
 
           {/* Actions */}
           <div className="filter-actions">
-            <Button fullWidth variant="outlined" onClick={handleResetLocal}>
-              {t("reset_local")}
-            </Button>
+            <TooltipComponent position="bottom" title={t("reset_aria")}>
+              <Button fullWidth variant="outlined" onClick={handleResetLocal}>
+                {t("reset_local")}
+              </Button>
+            </TooltipComponent>
 
-            <Button
-              fullWidth
-              variant="contained"
-              onClick={handleApply}
-              sx={{ mt: 1 }}
-            >
-              {t("apply_filters")}
-            </Button>
+            <TooltipComponent position="bottom" title={t("apply_filters_aria")}>
+              <Button
+                fullWidth
+                variant="contained"
+                onClick={handleApply}
+                sx={{ mt: 1 }}
+              >
+                {t("apply_filters")}
+              </Button>
+            </TooltipComponent>
           </div>
         </div>
       </Popover>

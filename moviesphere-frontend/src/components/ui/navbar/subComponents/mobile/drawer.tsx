@@ -53,7 +53,6 @@ export default function MobileDrawer({
   language_aria,
 
   dark_mode_text,
-  language_text,
 }: Props) {
   return (
     <div className={`navbar__drawer ${open ? "open" : ""}`}>
@@ -99,7 +98,7 @@ export default function MobileDrawer({
           darkmode_aria={darkmode_aria}
           language_aria={language_aria}
           dark_mode_text={dark_mode_text}
-          language_text={language_text}
+          language_text={language === "ar" ? "English" : "العربية"}
         />
 
         {voiceError && <p className="voice-error-mobile">{voiceError}</p>}

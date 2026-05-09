@@ -3,6 +3,7 @@
 import { Button, Chip } from "@mui/material";
 import type { GenreFilterProps } from "../../../../types/movieFiltersTypes";
 import { useTranslation } from "react-i18next";
+import TooltipComponent from "../../helper/tooltip/TooltipComponent";
 
 export function GenreFilter({
   displayedGenres,
@@ -28,9 +29,14 @@ export function GenreFilter({
           />
         ))}
         {hasMoreGenres && (
-          <Button size="small" onClick={onToggleShowMore}>
-            {showAllGenres ? t("show_less") : t("show_more")}
-          </Button>
+          <TooltipComponent
+            position="top"
+            title={showAllGenres ? t("show_less") : t("show_more")}
+          >
+            <Button size="small" onClick={onToggleShowMore}>
+              {showAllGenres ? t("show_less") : t("show_more")}
+            </Button>
+          </TooltipComponent>
         )}
       </div>
     </div>

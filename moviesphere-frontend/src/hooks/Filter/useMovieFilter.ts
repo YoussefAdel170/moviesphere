@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getGenreNames, genreTranslationKeys } from "../../utils/genreMap";
+import { genreTranslationKeys } from "../../utils/genreMap";
 import { GENRES_INITIAL, TMDB_MIN_YEAR } from "../../constants/general";
 import {
   setGenresFilter,

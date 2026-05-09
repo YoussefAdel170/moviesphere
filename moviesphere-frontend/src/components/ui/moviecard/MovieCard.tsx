@@ -26,7 +26,7 @@ function MovieCard({
   genre_ids = [],
   index = 0,
 }: Props) {
-  const { t } = useTranslation("movieCard");
+  const { t } = useTranslation(["movieCard", "genre"]);
 
   const { posterUrl, showFallback, rating, to, handleImageError } =
     useMovieCard({
@@ -67,7 +67,7 @@ function MovieCard({
               decoding="async"
             />
           ) : (
-            <div className="movie-card__fallback">
+            <div className="movie-card__fallback d-flex gap-4 px-4">
               <FiFilm className="fallback-icon" aria-hidden="true" />
               <span className="fallback-title">
                 {title ? title.slice(0, 30) : t("unknown_title")}
@@ -90,7 +90,7 @@ function MovieCard({
               {genres.length > 0 && (
                 <div className="genres">
                   {genres.map((genre) => (
-                    <span key={genre}>{genre}</span>
+                    <span key={genre}>{t(`genre:${genre}`)}</span>
                   ))}
                 </div>
               )}

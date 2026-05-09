@@ -1,6 +1,9 @@
 {
   "btn_filters": "الفلاتر",
-  "title": "تصفية متقدمة",
+  "btn_filters_aria": "فتح الفلاتر",
+  "close_aria": "إغلاق الفلاتر",
+
+  "title": "فلاتر متقدمة",
 
   "genres_title": "الأنواع",
   "year_range_title": "سنوات الإصدار",
@@ -11,13 +14,14 @@
   "your_rating_title": "تقييمك",
 
   "sort_by_title": "ترتيب حسب",
+  "sort_by_aria": "ترتيب الأفلام",
 
   "sort_by": {
     "popularity_desc": "الأكثر شعبية",
     "popularity_asc": "الأقل شعبية",
 
-    "release_date_desc": "الأحدث إصداراً",
-    "release_date_asc": "الأقدم إصداراً",
+    "release_date_desc": "الأحدث أولاً",
+    "release_date_asc": "الأقدم أولاً",
 
     "rating_desc": "الأعلى تقييماً",
     "rating_asc": "الأقل تقييماً",
@@ -27,9 +31,20 @@
   },
 
   "clear_all": "مسح الكل",
-  "reset_local": "إعادة التعيين",
+  "reset_local": "إعادة تعيين",
   "apply_filters": "تطبيق الفلاتر",
 
+  "apply_filters_aria": "تطبيق الفلاتر المحددة",
+  "reset_aria": "إعادة تعيين جميع الفلاتر",
+  "remove_filter": "إزالة الفلتر",
+  "genre_filter": "فلتر النوع",
+  "rating_filter": "فلتر التقييم",
+
   "show_less": "عرض أقل",
-  "show_more": "عرض المزيد"
+  "show_more": "عرض المزيد",
+
+  "remove_filter_with_value": "إزالة فلتر {{value}}",
+  "remove_year_filter": "إزالة فلتر سنة الإصدار",
+  "remove_rating_filter": "إزالة فلتر التقييم",
+  "remove_sort_filter": "إزالة فلتر الترتيب"
 }

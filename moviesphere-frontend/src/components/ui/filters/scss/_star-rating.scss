@@ -20,6 +20,9 @@
       &.half {
         color: var(--accent-primary);
       }
+      &.half.rtl-flip {
+        transform: scaleX(-1);
+      }
     }
   }
   .star-wrapper:hover .star {
