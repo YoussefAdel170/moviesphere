@@ -1,0 +1,156 @@
+// src/components/ui/HorizontalCarousel/HorizontalCarousel.scss
+
+.horizontal-carousel {
+  margin: 3rem 0;
+
+  .carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.8rem;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-secondary);
+      }
+      [dir="rtl"] &::after {
+        right: 0;
+      }
+    }
+
+    .view-all-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      text-decoration: none;
+
+      svg {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &:hover {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &.left {
+      left: -10px;
+    }
+    &.right {
+      right: -10px;
+    }
+  }
+
+  .carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0 1rem;
+    -webkit-overflow-scrolling: touch;
+
+    // Hide scrollbar for all browsers
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+  }
+}
+
+// Arrow visibility on hover (desktop)
+@media (hover: hover) {
+  .carousel-container:hover .carousel-arrow.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Always show arrows on touch devices
+@media (hover: none) {
+  .carousel-arrow.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .horizontal-carousel {
+    .carousel-header h2 {
+      font-size: 1.5rem;
+    }
+    .carousel-arrow {
+      width: 32px;
+      height: 32px;
+      &.left {
+        left: -6px;
+      }
+      &.right {
+        right: -6px;
+      }
+    }
+  }
+}

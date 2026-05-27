@@ -1,8 +1,8 @@
-// src/pages/AIRecommendationsPage.scss
-.ai-recommendations-page {
+// src/components/ui/MediaListPage/MediaListPage.scss
+.media-list-page {
   min-height: 100vh;
-  padding: 2rem 1rem;
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
+  padding: 100px 2rem 2rem;
 
   .container {
     max-width: 1400px;
@@ -31,11 +31,11 @@
       font-weight: bold;
       color: var(--text-primary);
       margin: 0;
+      word-break: break-word;
     }
   }
 
-  // ✅ Grid matching your similar movies page
-  .similar-grid {
+  .media-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.5rem;
@@ -44,34 +44,8 @@
     @media (min-width: 640px) {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-
     @media (min-width: 1024px) {
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
-  }
-
-  .ai-loading-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    color: var(--text-primary);
-
-    .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--border-light);
-      border-top-color: var(--accent-secondary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
     }
   }
 }

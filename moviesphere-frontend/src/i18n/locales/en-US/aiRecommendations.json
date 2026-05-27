@@ -1,9 +1,11 @@
 {
-  "analyzing": "AI is picking the best recommendations for you...",
-  "powered_picks": "🤖 AI Picks",
+  "analyzing": "AI is analyzing...",
+  "powered_picks": "✨ AI Powered Picks",
 
   "loading": "Loading recommendations...",
   "no_recommendations": "No recommendations found right now.",
   "back_link": "Back to {{title}}",
-  "page_title": "🤖 Recommendations for {{title}}"
+  "page_title": "🤖 Recommendations for {{title}}",
+  "previous_recommendations": "Previous recommendations",
+  "next_recommendations": "Next recommendations"
 }

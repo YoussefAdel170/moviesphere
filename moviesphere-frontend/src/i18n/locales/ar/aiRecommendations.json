@@ -1,9 +1,11 @@
 {
-  "analyzing": "الذكاء الاصطناعي يختار لك أفضل التوصيات...",
-  "powered_picks": "🤖 اختيارات الذكاء الاصطناعي",
+  "powered_picks": "✨ توصيات مدعومة بالذكاء الاصطناعي",
+  "analyzing": "الذكاء الاصطناعي يحلل...",
 
   "loading": "جاري تحميل التوصيات...",
   "no_recommendations": "لم يتم العثور على توصيات حالياً.",
   "back_link": "العودة إلى {{title}}",
-  "page_title": "🤖 توصيات مشابهة لـ {{title}}"
+  "page_title": "🤖 توصيات مشابهة لـ {{title}}",
+  "previous_recommendations": "التوصيات السابقة",
+  "next_recommendations": "التوصيات التالية"
 }

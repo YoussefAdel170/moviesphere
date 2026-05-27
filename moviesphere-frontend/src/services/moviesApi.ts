@@ -12,6 +12,9 @@ export const moviesApi = {
   details: (id: number, language = DEFAULT_LANGUAGE) =>
     apiClient(`/movie/${id}?language=${language}`),
 
+  credits: (id: number, language = DEFAULT_LANGUAGE) =>
+    apiClient(`/movie/${id}/credits?language=${language}`),
+
   getSimilar: (
     id: number,
     page = DEFAULT_PAGE_NUMBER,

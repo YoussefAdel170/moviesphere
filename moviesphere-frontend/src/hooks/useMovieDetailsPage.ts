@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { moviesApi } from "../services/moviesApi";
 import { useAppSelector } from "../redux/hooks";
+import type { CastMember } from "../types/castMemberType";
 
 type Genre = { id: number; name: string };
 type ProductionCompany = {
@@ -41,6 +42,7 @@ export function useMovieDetails(id: string | undefined) {
   const { language } = useAppSelector((state) => state.movies);
   const [movie, setMovie] = useState<Movie | null>(null);
   const [similar, setSimilar] = useState<SimilarMovie[]>([]);
+  const [cast, setCast] = useState<CastMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -52,11 +54,13 @@ export function useMovieDetails(id: string | undefined) {
     Promise.all([
       moviesApi.details(Number(id), language),
       moviesApi.getSimilar(Number(id), 1, language),
+      moviesApi.credits(Number(id), language),
     ])
-      .then(([movieData, similarData]) => {
+      .then(([movieData, similarData, creditsData]) => {
         if (isMounted) {
           setMovie(movieData);
-          setSimilar(similarData.results?.slice(0, 5) || []);
+          setSimilar(similarData.results || []);
+          setCast(creditsData.cast || []);
         }
       })
       .catch(() => {
@@ -96,6 +100,7 @@ export function useMovieDetails(id: string | undefined) {
   return {
     movie,
     similar,
+    cast,
     loading,
     error,
     posterUrl,

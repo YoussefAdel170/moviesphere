@@ -8,6 +8,7 @@ import AIRecommendationsPage from "./pages/AIRecommendationsPage";
 import { useAppSelector } from "./redux/hooks";
 import { useEffect } from "react";
 import { syncLanguage } from "./i18n/languageSync";
+import CastPage from "./pages/CastPage";
 
 function App() {
   const { direction, language } = useAppSelector((state) => state.movies);
@@ -37,6 +38,7 @@ function App() {
           path="/movie/:id/ai-recommend"
           element={<AIRecommendationsPage />}
         />
+        <Route path="/movie/:id/cast" element={<CastPage />} />
       </Routes>
     </BrowserRouter>
   );

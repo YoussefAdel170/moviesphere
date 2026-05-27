@@ -1,0 +1,11 @@
+// MovieCarousel.scss
+.movie-carousel-loading {
+  margin: 3rem 0;
+  .carousel-header-placeholder {
+    margin-bottom: 1.5rem;
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+  }
+}
