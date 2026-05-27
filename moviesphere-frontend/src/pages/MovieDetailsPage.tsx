@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../redux/hooks";
 import { useMovieDetails } from "../hooks/useMovieDetailsPage";
 import MovieHero from "../components/ui/movieDetails/MovieHero";
 import MovieOverview from "../components/ui/movieDetails/MovieOverview";
@@ -15,6 +16,7 @@ import "./MovieDetailsPage.scss";
 export default function MovieDetailsPage() {
   const { id } = useParams();
   const { t } = useTranslation(["movieDetails", "common"]);
+  const { language } = useAppSelector((state) => state.movies); // ✅ moved before conditional returns
   const {
     movie,
     similar,
@@ -27,6 +29,7 @@ export default function MovieDetailsPage() {
     formatRuntime,
   } = useMovieDetails(id);
 
+  // ✅ Now it's safe to return early
   if (loading)
     return <div className="details-skeleton">{t("common:loading")}</div>;
   if (error || !movie)
@@ -54,6 +57,8 @@ export default function MovieDetailsPage() {
         backdropUrl={backdropUrl}
         homepage={movie.homepage}
         formatRuntime={formatRuntime}
+        movieId={movieIdNumber}
+        language={language}
       />
 
       <div className="content">

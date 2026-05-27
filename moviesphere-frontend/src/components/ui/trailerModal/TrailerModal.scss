@@ -1,0 +1,132 @@
+// src/components/ui/trailerModal/TrailerModal.scss
+
+.trailer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0a0a0a;
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.trailer-modal-content {
+  position: relative;
+  max-width: 90vw;
+  width: 100%;
+  max-height: 90vh;
+  background: #000;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  animation: scaleIn 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+  opacity: 0; // hidden by default
+
+  &:hover {
+    background: var(--accent-secondary);
+    color: white;
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Show close button only when hovering the modal content
+.trailer-modal-content:hover .modal-close {
+  opacity: 0.7;
+}
+
+.trailer-modal-content:hover .modal-close:hover {
+  opacity: 1;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  background: #000;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+/* Mobile: always show close button (no hover) */
+@media (max-width: 768px) {
+  .modal-close {
+    opacity: 0.8;
+    width: 36px;
+    height: 36px;
+    top: 12px;
+    right: 12px;
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .trailer-modal-content .modal-close {
+    opacity: 0.8;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .trailer-modal-overlay,
+  .trailer-modal-content {
+    animation: none;
+  }
+}

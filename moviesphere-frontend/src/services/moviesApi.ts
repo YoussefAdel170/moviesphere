@@ -27,4 +27,7 @@ export const moviesApi = {
 
   discover: (queryString: string) =>
     apiClient(`/discover/movie?${queryString}`),
+
+  videos: (id: number, language = DEFAULT_LANGUAGE) =>
+    apiClient(`/movie/${id}/videos?language=${language}`),
 };

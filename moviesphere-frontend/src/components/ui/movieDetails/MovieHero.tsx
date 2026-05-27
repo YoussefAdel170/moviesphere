@@ -10,6 +10,9 @@ import {
   FiHome,
   FiExternalLink,
 } from "react-icons/fi";
+import { useMovieVideos } from "../../../hooks/useMovieVideos";
+import { useState } from "react";
+import TrailerModal from "../trailerModal/TrailerModal";
 
 type Props = {
   title: string;
@@ -23,6 +26,8 @@ type Props = {
   backdropUrl: string | null;
   homepage: string | null;
   formatRuntime: (minutes: number) => string;
+  movieId: number;
+  language: string;
 };
 
 export default function MovieHero({
@@ -37,9 +42,14 @@ export default function MovieHero({
   backdropUrl,
   homepage,
   formatRuntime,
+  movieId,
+  language,
 }: Props) {
   const navigate = useNavigate();
   const { t } = useTranslation(["movieDetails", "common"]);
+  const { videos, loading } = useMovieVideos(movieId, language);
+  const [showModal, setShowModal] = useState(false);
+  const trailer = videos[0];
 
   return (
     <div
@@ -72,6 +82,16 @@ export default function MovieHero({
             >
               <FiExternalLink /> {t("common:official_site")}
             </a>
+          )}
+          {/* ✅ Trailer button inside same action-buttons container */}
+          {trailer && !loading && (
+            <button
+              className="trailer-button"
+              onClick={() => setShowModal(true)}
+              aria-label={t("watch_trailer_aria", "Watch trailer")}
+            >
+              ▶ {t("watch_trailer", "Watch Trailer")}
+            </button>
           )}
         </div>
 
@@ -109,6 +129,15 @@ export default function MovieHero({
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && trailer && (
+        <TrailerModal
+          videoKey={trailer.key}
+          title={title}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }
