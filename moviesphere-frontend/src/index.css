@@ -51,6 +51,11 @@
   --scrollbar-track: var(--bg-secondary);
   --scrollbar-thumb: #cbdae9;
   --scrollbar-thumb-hover: #a0b4cc;
+
+  /* tooltip */
+  --tooltip-bg: rgba(30, 30, 35, 0.95);
+  --tooltip-arrow: rgba(30, 30, 35, 0.95);
+  --tooltip-text: #ffffff;
 }
 
 /* ============================================
@@ -88,6 +93,11 @@
   --scrollbar-track: var(--bg-secondary);
   --scrollbar-thumb: #30363d;
   --scrollbar-thumb-hover: #424a53;
+
+  /* tooltip */
+  --tooltip-bg: rgba(0, 0, 0, 0.95);
+  --tooltip-arrow: rgba(0, 0, 0, 0.95);
+  --tooltip-text: #f0f0f0;
 }
 
 /* ============================================

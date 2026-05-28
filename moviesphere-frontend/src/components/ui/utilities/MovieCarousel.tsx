@@ -1,6 +1,5 @@
 // src/components/ui/movieCarousel/MovieCarousel.tsx
 import type { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
 import MovieCard from "../moviecard/MovieCard";
 import { normalizeMovie } from "../../../utils/normalizeMovie";
 import HorizontalCarousel from "../horizontalCarousel/HorizontalCarousel";
@@ -37,12 +36,9 @@ export default function MovieCarousel({
   error = false,
   title,
   viewAllLink,
-  emptyMessage,
   itemWidth = 180,
   gap = 24,
 }: Props) {
-  const { t } = useTranslation();
-
   if (loading) {
     return (
       <div className="movie-carousel-loading">

@@ -10,6 +10,7 @@ import {
   FiHome,
   FiExternalLink,
   FiPlay,
+  FiShield,
 } from "react-icons/fi";
 import { useMovieVideos } from "../../../hooks/useMovieVideos";
 import { useWatchProviders } from "../../../hooks/useWatchProviders";
@@ -17,6 +18,8 @@ import { useMovieHomepage } from "../../../hooks/useMovieHomepage";
 import { useState } from "react";
 import TrailerModal from "../trailerModal/TrailerModal";
 import WatchProviders from "../watchProviders/WatchProviders";
+import { useMovieCertification } from "../../../hooks/useMovieCertification";
+import TooltipComponent from "../helper/tooltip/TooltipComponent";
 
 type Props = {
   title: string;
@@ -30,7 +33,7 @@ type Props = {
   backdropUrl: string | null;
   formatRuntime: (minutes: number) => string;
   movieId: number;
-  language: string; // kept for future use (e.g., country detection)
+  language: string;
 };
 
 export default function MovieHero({
@@ -45,6 +48,7 @@ export default function MovieHero({
   backdropUrl,
   formatRuntime,
   movieId,
+  language,
 }: Props) {
   const navigate = useNavigate();
   const { t } = useTranslation(["movieDetails", "common"]);
@@ -63,6 +67,24 @@ export default function MovieHero({
     streamingLink,
     loading: providersLoading,
   } = useWatchProviders(movieId, "US");
+
+  // Movie certification (age rating + exact release date)
+  const {
+    certification,
+    exactDate,
+    loading: certLoading,
+  } = useMovieCertification(movieId, "US");
+
+  // Prepare tooltip text with translation
+  const tooltipText = t("certification_tooltip", {
+    certification: certification || "NR",
+    date:
+      exactDate ||
+      new Date(releaseDate).toLocaleDateString(
+        language === "ar" ? "ar-EG" : "en-US",
+        { year: "numeric", month: "long", day: "numeric" },
+      ),
+  });
 
   return (
     <div
@@ -122,13 +144,28 @@ export default function MovieHero({
             <h1>{title}</h1>
             {tagline && <p className="tagline">"{tagline}"</p>}
             <div className="meta">
-              <span>
+              {/* Year */}
+              <span className="meta-year">
                 <FiCalendar /> {new Date(releaseDate).getFullYear()}
               </span>
-              <span>
+
+              {/* Certification (only if exists) */}
+              {certification && !certLoading && (
+                <TooltipComponent title={tooltipText} position="top">
+                  <div className="certification-badge">
+                    <FiShield className="mt-0 mb-0" />
+                    <div className="mt-0 mb-0">{certification}</div>
+                  </div>
+                </TooltipComponent>
+              )}
+
+              {/* Runtime */}
+              <span className="meta-runtime">
                 <FiClock /> {formatRuntime(runtime)}
               </span>
-              <span>
+
+              {/* Rating */}
+              <span className="meta-rating">
                 <FiStar /> {voteAverage.toFixed(1)} (
                 {t("movieDetails:votes", { count: voteCount })})
               </span>
@@ -140,7 +177,6 @@ export default function MovieHero({
                 </span>
               ))}
             </div>
-            {/* WatchProviders with streaming link (makes logos clickable) */}
             <WatchProviders
               providers={providers}
               streamingLink={streamingLink}
