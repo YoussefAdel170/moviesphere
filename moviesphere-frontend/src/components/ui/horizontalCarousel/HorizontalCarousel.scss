@@ -24,7 +24,9 @@
         height: 3px;
         background: var(--accent-secondary);
       }
+
       [dir="rtl"] &::after {
+        left: auto;
         right: 0;
       }
     }
@@ -80,15 +82,18 @@
     transition: all 0.2s ease;
     z-index: 2;
     backdrop-filter: blur(8px);
-    opacity: 0;
-    visibility: hidden;
 
-    &.visible {
-      opacity: 1;
-      visibility: visible;
+    // Always visible — disabled state makes it look inactive
+    opacity: 1;
+    visibility: visible;
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none; // no hover effect when disabled
     }
 
-    &:hover {
+    &:not(:disabled):hover {
       background: var(--accent-primary);
       color: white;
       border-color: var(--accent-primary);
@@ -101,6 +106,15 @@
     &.right {
       right: -10px;
     }
+
+    [dir="rtl"] &.left {
+      left: auto;
+      right: -10px;
+    }
+    [dir="rtl"] &.right {
+      right: auto;
+      left: -10px;
+    }
   }
 
   .carousel-track {
@@ -110,46 +124,39 @@
     padding: 0.5rem 0 1rem;
     -webkit-overflow-scrolling: touch;
 
-    // Hide scrollbar for all browsers
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none;
     }
   }
 }
 
-// Arrow visibility on hover (desktop)
-@media (hover: hover) {
-  .carousel-container:hover .carousel-arrow.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-// Always show arrows on touch devices
-@media (hover: none) {
-  .carousel-arrow.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-// Responsive adjustments
 @media (max-width: 768px) {
   .horizontal-carousel {
     .carousel-header h2 {
       font-size: 1.5rem;
     }
+
     .carousel-arrow {
       width: 32px;
       height: 32px;
+
       &.left {
         left: -6px;
       }
       &.right {
         right: -6px;
+      }
+
+      [dir="rtl"] &.left {
+        left: auto;
+        right: -6px;
+      }
+      [dir="rtl"] &.right {
+        right: auto;
+        left: -6px;
       }
     }
   }

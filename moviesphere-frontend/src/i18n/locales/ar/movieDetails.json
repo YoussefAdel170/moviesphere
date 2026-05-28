@@ -43,5 +43,15 @@
   "watch_trailer": "شاهد الإعلان",
   "watch_trailer_aria": "شاهد الإعلان",
 
-  "certification_tooltip": "التقييم {{certification}} • تاريخ الإصدار {{date}}"
+  "certification_tooltip": "التقييم {{certification}} • تاريخ الإصدار {{date}}",
+
+  "reviews_title": "آراء المستخدمين",
+  "view_all_reviews": "عرض جميع الآراء",
+  "read_more": "اقرأ المزيد",
+  "show_less": "عرض أقل",
+
+  "all_reviews_title": "جميع آراء المستخدمين",
+  "error_loading_reviews": "فشل تحميل الآراء. حاول مرة أخرى.",
+  "reviews_powered_by": "الآراء مقدمة من",
+  "back_link": "العودة إلى {{title}}"
 }

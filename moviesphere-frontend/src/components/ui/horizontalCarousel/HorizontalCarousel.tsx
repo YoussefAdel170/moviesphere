@@ -6,18 +6,23 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./HorizontalCarousel.scss";
 
 type Props = {
-  title: string; // i18n key or raw text
+  title: string;
   viewAllLink?: {
     to: string;
     label?: string;
     icon?: ReactNode;
   };
-  items: any[]; // array of items to display
+  items: any[];
   renderItem: (item: any, index: number) => ReactNode;
-  itemWidth?: number; // width of each item in pixels (default: 180)
-  gap?: number; // gap between items in pixels (default: 24)
-  scrollAmount?: number; // how many pixels to scroll per arrow click (default: itemWidth * 3)
+  itemWidth?: number;
+  gap?: number;
+  scrollAmount?: number;
 };
+
+function getNormalizedScrollLeft(el: HTMLElement, isRTL: boolean): number {
+  if (!isRTL) return el.scrollLeft;
+  return Math.abs(el.scrollLeft);
+}
 
 export default function HorizontalCarousel({
   title,
@@ -29,17 +34,27 @@ export default function HorizontalCarousel({
   scrollAmount: customScrollAmount,
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [rtl, setRtl] = useState(false);
 
   const scrollAmount = customScrollAmount ?? itemWidth * 3;
 
   const updateArrows = () => {
     const el = scrollRef.current;
     if (!el) return;
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    setShowLeftArrow(scrollLeft > 20);
-    setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 20);
+    const isRTL = getComputedStyle(el).direction === "rtl";
+    setRtl(isRTL);
+    const normalized = getNormalizedScrollLeft(el, isRTL);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+
+    if (isRTL) {
+      setCanScrollRight(normalized > 20);
+      setCanScrollLeft(normalized < maxScroll - 20);
+    } else {
+      setCanScrollLeft(normalized > 20);
+      setCanScrollRight(normalized < maxScroll - 20);
+    }
   };
 
   useEffect(() => {
@@ -49,17 +64,22 @@ export default function HorizontalCarousel({
   }, [items]);
 
   const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const delta = direction === "left" ? -scrollAmount : scrollAmount;
-      scrollRef.current.scrollTo({
-        left: scrollRef.current.scrollLeft + delta,
-        behavior: "smooth",
-      });
-      setTimeout(updateArrows, 200);
-    }
+    const el = scrollRef.current;
+    if (!el) return;
+    // No RTL flip needed here — the icons are already swapped visually,
+    // so "left" always means physically scroll left (negative scrollLeft delta)
+    // and "right" always means physically scroll right, in both LTR and RTL.
+    const delta = direction === "left" ? -scrollAmount : scrollAmount;
+    el.scrollTo({ left: el.scrollLeft + delta, behavior: "smooth" });
+    setTimeout(updateArrows, 200);
   };
 
   if (!items.length) return null;
+
+  // In RTL the left button scrolls toward the end (more content),
+  // so it should point RIGHT (→). The right button goes back to start, points LEFT (←).
+  const LeftIcon = rtl ? FiChevronRight : FiChevronLeft;
+  const RightIcon = rtl ? FiChevronLeft : FiChevronRight;
 
   return (
     <div className="horizontal-carousel">
@@ -75,11 +95,12 @@ export default function HorizontalCarousel({
 
       <div className="carousel-container">
         <button
-          className={`carousel-arrow left ${showLeftArrow ? "visible" : "hidden"}`}
+          className="carousel-arrow left"
           onClick={() => scroll("left")}
+          disabled={!canScrollLeft}
           aria-label="Scroll left"
         >
-          <FiChevronLeft />
+          <LeftIcon />
         </button>
 
         <div
@@ -100,11 +121,12 @@ export default function HorizontalCarousel({
         </div>
 
         <button
-          className={`carousel-arrow right ${showRightArrow ? "visible" : "hidden"}`}
+          className="carousel-arrow right"
           onClick={() => scroll("right")}
+          disabled={!canScrollRight}
           aria-label="Scroll right"
         >
-          <FiChevronRight />
+          <RightIcon />
         </button>
       </div>
     </div>

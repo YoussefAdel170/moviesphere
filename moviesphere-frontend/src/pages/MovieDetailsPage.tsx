@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../redux/hooks";
 import { useMovieDetails } from "../hooks/useMovieDetailsPage";
+import { useMovieReviews } from "../hooks/useMovieReviews"; // ✅ Import the hook
 import MovieHero from "../components/ui/movieDetails/MovieHero";
 import MovieOverview from "../components/ui/movieDetails/MovieOverview";
 import MovieInfoGrid from "../components/ui/movieDetails/MovieInfoGrid";
@@ -12,11 +13,15 @@ import CastCarousel from "../components/ui/castCarousel/CastCarousel";
 import SimilarMoviesCarousel from "../components/ui/movieDetails/SimilarMoviesCarousel";
 import AIRecommendations from "../components/ui/aiRecommendations/AIRecommendations";
 import "./MovieDetailsPage.scss";
+import ReviewsSection from "../components/ui/reviewsSection/ReviewSection";
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
   const { t } = useTranslation(["movieDetails", "common"]);
-  const { language } = useAppSelector((state) => state.movies); // ✅ moved before conditional returns
+  const { language } = useAppSelector((state) => state.movies);
+  const movieIdNumber = Number(id);
+
+  // ✅ ALL hooks are now called at the top level, before any conditional logic
   const {
     movie,
     similar,
@@ -29,13 +34,18 @@ export default function MovieDetailsPage() {
     formatRuntime,
   } = useMovieDetails(id);
 
-  // ✅ Now it's safe to return early
+  const { reviews, loading: reviewsLoading } = useMovieReviews(
+    movieIdNumber,
+    1,
+    3,
+  );
+
+  // ✅ Early returns happen AFTER all hooks have been called
   if (loading)
     return <div className="details-skeleton">{t("common:loading")}</div>;
   if (error || !movie)
     return <div className="details-error">{t("common:not_found")}</div>;
 
-  const movieIdNumber = Number(id);
   const releaseYear = new Date(movie.release_date).getFullYear();
 
   return (
@@ -70,10 +80,12 @@ export default function MovieDetailsPage() {
           formatCurrency={formatCurrency}
         />
         <ProductionCompanies companies={movie.production_companies} />
+
         {cast.length > 0 && (
           <CastCarousel cast={cast} movieId={movieIdNumber} />
         )}
         <SimilarMoviesCarousel similar={similar} movieId={movieIdNumber} />
+
         <AIRecommendations
           movieId={movieIdNumber}
           movieTitle={movie.title}
@@ -81,6 +93,15 @@ export default function MovieDetailsPage() {
           movieGenres={movie.genres.map((g) => g.name).join(", ")}
           movieOverview={movie.overview}
         />
+
+        {/* ✅ The ReviewsSection is now safe to render */}
+        {!reviewsLoading && reviews.length > 0 && (
+          <ReviewsSection
+            reviews={reviews}
+            loading={reviewsLoading}
+            movieId={movieIdNumber}
+          />
+        )}
       </div>
     </motion.div>
   );

@@ -9,6 +9,7 @@ import { useAppSelector } from "./redux/hooks";
 import { useEffect } from "react";
 import { syncLanguage } from "./i18n/languageSync";
 import CastPage from "./pages/CastPage";
+import ReviewsPage from "./pages/ReviewsPage";
 
 function App() {
   const { direction, language } = useAppSelector((state) => state.movies);
@@ -39,6 +40,7 @@ function App() {
           element={<AIRecommendationsPage />}
         />
         <Route path="/movie/:id/cast" element={<CastPage />} />
+        <Route path="/movie/:id/reviews" element={<ReviewsPage />} />
       </Routes>
     </BrowserRouter>
   );

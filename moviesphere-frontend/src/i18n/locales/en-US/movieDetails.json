@@ -43,5 +43,15 @@
   "watch_trailer": "Watch Trailer",
   "watch_trailer_aria": "Watch trailer",
 
-  "certification_tooltip": "Rated {{certification}} • Released {{date}}"
+  "certification_tooltip": "Rated {{certification}} • Released {{date}}",
+
+  "reviews_title": "User Reviews",
+  "view_all_reviews": "View all reviews",
+  "read_more": "Read more",
+  "show_less": "Show less",
+
+  "all_reviews_title": "All User Reviews",
+  "error_loading_reviews": "Failed to load reviews. Please try again.",
+  "reviews_powered_by": "Reviews powered by",
+  "back_link": "Back to {{title}}"
 }

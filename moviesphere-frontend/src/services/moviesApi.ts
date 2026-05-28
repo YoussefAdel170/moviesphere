@@ -34,4 +34,7 @@ export const moviesApi = {
   watchProviders: (id: number) => apiClient(`/movie/${id}/watch/providers`),
 
   releaseDates: (id: number) => apiClient(`/movie/${id}/release_dates`),
+
+  reviews: (id: number, page: number = 1) =>
+    apiClient(`/movie/${id}/reviews?page=${page}`),
 };
