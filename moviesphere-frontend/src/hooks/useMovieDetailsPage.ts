@@ -38,6 +38,23 @@ type SimilarMovie = {
   vote_average: number;
 };
 
+// Cache for static fields (language‑independent) – keyed by id only
+const staticMovieCache = new Map<
+  number,
+  {
+    homepage: string | null;
+    backdrop_path: string | null;
+    poster_path: string | null;
+  }
+>();
+
+// Cache for full localized movie data – keyed by id-language
+const localizedMovieCache = new Map<string, Movie>();
+
+// Separate caches for similar and cast (also keyed by id-language)
+const similarCache = new Map<string, SimilarMovie[]>();
+const castCache = new Map<string, CastMember[]>();
+
 export function useMovieDetails(id: string | undefined) {
   const { language } = useAppSelector((state) => state.movies);
   const [movie, setMovie] = useState<Movie | null>(null);
@@ -45,35 +62,95 @@ export function useMovieDetails(id: string | undefined) {
   const [cast, setCast] = useState<CastMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const numericId = Number(id);
+  const cacheKey = `${numericId}-${language}`;
 
   useEffect(() => {
-    if (!id) return;
+    if (!numericId) return;
 
     let isMounted = true;
 
-    Promise.all([
-      moviesApi.details(Number(id), language),
-      moviesApi.getSimilar(Number(id), 1, language),
-      moviesApi.credits(Number(id), language),
-    ])
-      .then(([movieData, similarData, creditsData]) => {
-        if (isMounted) {
-          setMovie(movieData);
-          setSimilar(similarData.results || []);
-          setCast(creditsData.cast || []);
+    const loadData = async () => {
+      // 1. Restore static cache (homepage, posters) as placeholder movie
+      if (staticMovieCache.has(numericId) && !movie) {
+        const staticData = staticMovieCache.get(numericId)!;
+        setMovie({
+          id: numericId,
+          title: "",
+          overview: "",
+          vote_average: 0,
+          vote_count: 0,
+          release_date: "",
+          runtime: 0,
+          tagline: "",
+          genres: [],
+          production_companies: [],
+          budget: 0,
+          revenue: 0,
+          status: "",
+          original_language: "",
+          homepage: staticData.homepage,
+          backdrop_path: staticData.backdrop_path,
+          poster_path: staticData.poster_path,
+        });
+      }
+
+      // 2. If all data is cached, use it and stop loading
+      if (
+        localizedMovieCache.has(cacheKey) &&
+        similarCache.has(cacheKey) &&
+        castCache.has(cacheKey)
+      ) {
+        setMovie(localizedMovieCache.get(cacheKey)!);
+        setSimilar(similarCache.get(cacheKey)!);
+        setCast(castCache.get(cacheKey)!);
+        setLoading(false);
+        return;
+      }
+
+      // 3. Otherwise fetch fresh data
+      setLoading(true);
+      setError(false);
+
+      try {
+        const [movieData, similarData, creditsData] = await Promise.all([
+          moviesApi.details(numericId, language),
+          moviesApi.getSimilar(numericId, 1, language),
+          moviesApi.credits(numericId, language),
+        ]);
+
+        if (!isMounted) return;
+
+        // Store static fields globally
+        if (!staticMovieCache.has(numericId)) {
+          staticMovieCache.set(numericId, {
+            homepage: movieData.homepage,
+            backdrop_path: movieData.backdrop_path,
+            poster_path: movieData.poster_path,
+          });
         }
-      })
-      .catch(() => {
+
+        // Store localized data in respective caches
+        localizedMovieCache.set(cacheKey, movieData);
+        similarCache.set(cacheKey, similarData.results || []);
+        castCache.set(cacheKey, creditsData.cast || []);
+
+        setMovie(movieData);
+        setSimilar(similarData.results || []);
+        setCast(creditsData.cast || []);
+      } catch (err) {
         if (isMounted) setError(true);
-      })
-      .finally(() => {
+      } finally {
         if (isMounted) setLoading(false);
-      });
+      }
+    };
+
+    loadData();
 
     return () => {
       isMounted = false;
     };
-  }, [id, language]);
+  }, [numericId, language, cacheKey, movie]);
 
   const formatCurrency = (value: number) => {
     if (value === 0) return "N/A";

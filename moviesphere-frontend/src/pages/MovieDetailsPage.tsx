@@ -55,7 +55,6 @@ export default function MovieDetailsPage() {
         genres={movie.genres}
         posterUrl={posterUrl}
         backdropUrl={backdropUrl}
-        homepage={movie.homepage}
         formatRuntime={formatRuntime}
         movieId={movieIdNumber}
         language={language}

@@ -9,10 +9,14 @@ import {
   FiStar,
   FiHome,
   FiExternalLink,
+  FiPlay,
 } from "react-icons/fi";
 import { useMovieVideos } from "../../../hooks/useMovieVideos";
+import { useWatchProviders } from "../../../hooks/useWatchProviders";
+import { useMovieHomepage } from "../../../hooks/useMovieHomepage";
 import { useState } from "react";
 import TrailerModal from "../trailerModal/TrailerModal";
+import WatchProviders from "../watchProviders/WatchProviders";
 
 type Props = {
   title: string;
@@ -24,10 +28,9 @@ type Props = {
   genres: { id: number; name: string }[];
   posterUrl: string | null;
   backdropUrl: string | null;
-  homepage: string | null;
   formatRuntime: (minutes: number) => string;
   movieId: number;
-  language: string;
+  language: string; // kept for future use (e.g., country detection)
 };
 
 export default function MovieHero({
@@ -40,16 +43,26 @@ export default function MovieHero({
   genres,
   posterUrl,
   backdropUrl,
-  homepage,
   formatRuntime,
   movieId,
-  language,
 }: Props) {
   const navigate = useNavigate();
   const { t } = useTranslation(["movieDetails", "common"]);
-  const { videos, loading } = useMovieVideos(movieId, language);
+
+  // Trailer (cached by movieId)
+  const { videos, loading: videosLoading } = useMovieVideos(movieId);
   const [showModal, setShowModal] = useState(false);
   const trailer = videos[0];
+
+  // Official site (cached by movieId)
+  const { homepage, loading: homepageLoading } = useMovieHomepage(movieId);
+
+  // Watch providers (cached by movieId + country)
+  const {
+    providers,
+    streamingLink,
+    loading: providersLoading,
+  } = useWatchProviders(movieId, "US");
 
   return (
     <div
@@ -73,7 +86,7 @@ export default function MovieHero({
           >
             <FiHome /> {t("common:home")}
           </Link>
-          {homepage && (
+          {homepage && !homepageLoading && (
             <a
               href={homepage}
               target="_blank"
@@ -83,27 +96,28 @@ export default function MovieHero({
               <FiExternalLink /> {t("common:official_site")}
             </a>
           )}
-          {/* ✅ Trailer button inside same action-buttons container */}
-          {trailer && !loading && (
+          {trailer && !videosLoading && (
             <button
               className="trailer-button"
               onClick={() => setShowModal(true)}
               aria-label={t("watch_trailer_aria", "Watch trailer")}
             >
-              ▶ {t("watch_trailer", "Watch Trailer")}
+              <FiPlay /> {t("watch_trailer", "Watch Trailer")}
             </button>
           )}
         </div>
 
         <div className="hero-info">
-          <motion.img
-            src={posterUrl || "/fallback-poster.png"}
-            alt={t("movieDetails:poster_alt", { title })}
-            className="poster mt-25"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          />
+          <div className="poster-wrapper">
+            <motion.img
+              src={posterUrl || "/fallback-poster.png"}
+              alt={t("movieDetails:poster_alt", { title })}
+              className="poster"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            />
+          </div>
           <div className="details">
             <h1>{title}</h1>
             {tagline && <p className="tagline">"{tagline}"</p>}
@@ -126,11 +140,16 @@ export default function MovieHero({
                 </span>
               ))}
             </div>
+            {/* WatchProviders with streaming link (makes logos clickable) */}
+            <WatchProviders
+              providers={providers}
+              streamingLink={streamingLink}
+              loading={providersLoading}
+            />
           </div>
         </div>
       </div>
 
-      {/* Modal */}
       {showModal && trailer && (
         <TrailerModal
           videoKey={trailer.key}

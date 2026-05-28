@@ -36,5 +36,10 @@
   "back_to_movie": "العودة إلى {{title}}",
   "error_loading_cast": "فشل تحميل طاقم التمثيل. حاول مرة أخرى.",
   "no_cast_found": "لم يتم العثور على ممثلين لهذا الفيلم.",
-  "full_cast_with_title": "طاقم التمثيل الكامل لـ {{title}}"
+  "full_cast_with_title": "طاقم التمثيل الكامل لـ {{title}}",
+
+  "where_to_watch": "أين يمكن المشاهدة",
+
+  "watch_trailer": "شاهد الإعلان",
+  "watch_trailer_aria": "شاهد الإعلان"
 }

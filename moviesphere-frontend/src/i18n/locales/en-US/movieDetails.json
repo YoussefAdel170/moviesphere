@@ -21,7 +21,7 @@
   "status": "Status",
   "production_companies": "Production Companies",
 
-  "tmdb_recommends": "🎬 Recommended by TMDB",
+  "tmdb_recommends": "🎬 TMDB Recommender",
 
   "view_more": "View More",
 
@@ -36,5 +36,10 @@
   "back_to_movie": "Back to {{title}}",
   "error_loading_cast": "Failed to load cast. Please try again.",
   "no_cast_found": "No cast members found for this movie.",
-  "full_cast_with_title": "Full Cast of {{title}}"
+  "full_cast_with_title": "Full Cast of {{title}}",
+
+  "where_to_watch": "Where to Watch",
+
+  "watch_trailer": "Watch Trailer",
+  "watch_trailer_aria": "Watch trailer"
 }

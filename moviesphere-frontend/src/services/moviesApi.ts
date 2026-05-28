@@ -30,4 +30,6 @@ export const moviesApi = {
 
   videos: (id: number, language = DEFAULT_LANGUAGE) =>
     apiClient(`/movie/${id}/videos?language=${language}`),
+
+  watchProviders: (id: number) => apiClient(`/movie/${id}/watch/providers`),
 };
