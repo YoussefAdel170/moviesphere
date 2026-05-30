@@ -1,4 +1,5 @@
-.movie-filters {
+.movie-filters,
+.tv-filters {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -60,7 +61,8 @@
 }
 
 @media ((max-width: 728px) and (min-width: 600px)) {
-  .movie-filters {
+  .movie-filters,
+  .tv-filters {
     gap: 1rem;
   }
 }

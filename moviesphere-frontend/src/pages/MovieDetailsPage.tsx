@@ -10,15 +10,17 @@ import MovieOverview from "../components/ui/movieDetails/MovieOverview";
 import MovieInfoGrid from "../components/ui/movieDetails/MovieInfoGrid";
 import ProductionCompanies from "../components/ui/movieDetails/ProductionCompanies";
 import CastCarousel from "../components/ui/castCarousel/CastCarousel";
-import SimilarMoviesCarousel from "../components/ui/movieDetails/SimilarMoviesCarousel";
 import AIRecommendations from "../components/ui/aiRecommendations/AIRecommendations";
 import "./MovieDetailsPage.scss";
 import ReviewsSection from "../components/ui/reviewsSection/ReviewSection";
+import SimilarCarousel from "../components/ui/utilities/SimilarCarousel";
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
   const { t } = useTranslation(["movieDetails", "common"]);
-  const { language } = useAppSelector((state) => state.movies);
+  const { language } = useAppSelector(
+    (state: { movies: { language: string } }) => state.movies,
+  );
   const movieIdNumber = Number(id);
 
   // ✅ ALL hooks are now called at the top level, before any conditional logic
@@ -84,8 +86,12 @@ export default function MovieDetailsPage() {
         {cast.length > 0 && (
           <CastCarousel cast={cast} movieId={movieIdNumber} />
         )}
-        <SimilarMoviesCarousel similar={similar} movieId={movieIdNumber} />
-
+        <SimilarCarousel
+          items={similar}
+          id={movieIdNumber}
+          mediaType="movie"
+          titleKey="tmdb_recommends"
+        />
         <AIRecommendations
           movieId={movieIdNumber}
           movieTitle={movie.title}
@@ -99,7 +105,7 @@ export default function MovieDetailsPage() {
           <ReviewsSection
             reviews={reviews}
             loading={reviewsLoading}
-            movieId={movieIdNumber}
+            id={movieIdNumber}
           />
         )}
       </div>

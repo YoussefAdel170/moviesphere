@@ -53,5 +53,7 @@
   "all_reviews_title": "All User Reviews",
   "error_loading_reviews": "Failed to load reviews. Please try again.",
   "reviews_powered_by": "Reviews powered by",
-  "back_link": "Back to {{title}}"
+  "back_link": "Back to {{title}}",
+
+  "search_results_for": "Search results for:"
 }

@@ -1,0 +1,48 @@
+{
+  "popular": {
+    "title": "المسلسلات الأكثر مشاهدة",
+    "no_shows": "لا توجد مسلسلات",
+    "no_shows_message": "حاول تعديل الفلاتر أو تحقق مرة أخرى لاحقاً.",
+    "back_home": "العودة إلى الرئيسية"
+  },
+  "details": {
+    "overview": "نبذة",
+    "seasons": "المواسم",
+    "episodes": "حلقات",
+    "votes_one": "{{count}} تصويت",
+    "votes_other": "{{count}} أصوات",
+    "first_air_date": "تاريخ العرض الأول",
+    "last_air_date": "تاريخ العرض الأخير",
+    "status": "الحالة",
+    "original_language": "اللغة الأصلية",
+    "production_companies": "شركات الإنتاج",
+    "no_cast": "لا تتوفر معلومات عن طاقم التمثيل.",
+    "no_similar": "لا توجد مسلسلات مشابهة.",
+    "similar": "مسلسلات مشابهة",
+    "watch_trailer": "شاهد الإعلان",
+    "watch_trailer_aria": "شاهد الإعلان الرسمي",
+    "official_site": "الموقع الرسمي",
+    "back_to_show": "العودة إلى {{title}}",
+    "loading": "جاري التحميل...",
+    "not_found": "المسلسل غير موجود",
+    "error": "فشل تحميل بيانات المسلسل. حاول مرة أخرى.",
+    "tmdb_recommends": "🎬 ترشيحات TMDB"
+  },
+  "season": {
+    "title": "الموسم {{number}}",
+    "episodes": "الحلقات",
+    "episode": "الحلقة {{number}}",
+    "air_date": "تاريخ العرض",
+    "runtime": "المدة",
+    "overview": "نبذة",
+    "no_episodes": "لا توجد حلقات لهذا الموسم.",
+    "back_to_show": "العودة إلى {{title}}"
+  },
+  "common": {
+    "view_all": "عرض الكل",
+    "read_more": "اقرأ المزيد",
+    "show_less": "عرض أقل",
+    "retry": "إعادة المحاولة",
+    "search_results": "نتائج البحث عن: {{query}}"
+  }
+}

@@ -15,6 +15,7 @@ type Props = {
   overview?: string;
   genre_ids?: number[];
   index?: number;
+  mediaType?: "movie" | "tv"; // ✅ new prop
 };
 
 function MovieCard({
@@ -25,18 +26,21 @@ function MovieCard({
   overview,
   genre_ids = [],
   index = 0,
+  mediaType = "movie", // default to movie
 }: Props) {
   const { t } = useTranslation(["movieCard", "genre"]);
 
-  const { posterUrl, showFallback, rating, to, handleImageError } =
-    useMovieCard({
-      id,
-      title,
-      poster_path,
-      vote_average,
-    });
+  const { posterUrl, showFallback, rating, handleImageError } = useMovieCard({
+    id,
+    title,
+    poster_path,
+    vote_average,
+  });
 
-  // ✅ Use the translated utility
+  // Build the correct link based on media type
+  const to = mediaType === "tv" ? `/tv/${id}` : `/movie/${id}`;
+
+  // ... rest remains same (genres, ariaLabel, JSX)
   const genres = useMemo(() => {
     return getGenreNames(genre_ids, t);
   }, [genre_ids, t]);
@@ -57,6 +61,7 @@ function MovieCard({
       aria-label={ariaLabel}
     >
       <Link to={to}>
+        {/* same JSX for image, fallback, overlays, info */}
         <div className="movie-card__image">
           {!showFallback ? (
             <img
@@ -74,11 +79,9 @@ function MovieCard({
               </span>
             </div>
           )}
-
           <div className="movie-card__overlay">
             <span>⭐ {rating}</span>
           </div>
-
           <div className="movie-card__hover-overlay">
             <div className="overlay-content">
               {overview && (
@@ -86,7 +89,6 @@ function MovieCard({
                   {overview}
                 </p>
               )}
-
               {genres.length > 0 && (
                 <div className="genres">
                   {genres.map((genre) => (
@@ -97,7 +99,6 @@ function MovieCard({
             </div>
           </div>
         </div>
-
         <div className="movie-card__info">
           <h3>{title || t("unknown_title")}</h3>
         </div>

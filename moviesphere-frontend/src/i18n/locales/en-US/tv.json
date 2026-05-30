@@ -1,0 +1,48 @@
+{
+  "popular": {
+    "title": "Popular TV Shows",
+    "no_shows": "No TV shows found",
+    "no_shows_message": "Try adjusting your filters or check back later.",
+    "back_home": "Back to Home"
+  },
+  "details": {
+    "overview": "Overview",
+    "seasons": "Seasons",
+    "episodes": "episodes",
+    "votes_one": "{{count}} vote",
+    "votes_other": "{{count}} votes",
+    "first_air_date": "First Air Date",
+    "last_air_date": "Last Air Date",
+    "status": "Status",
+    "original_language": "Original Language",
+    "production_companies": "Production Companies",
+    "no_cast": "No cast information available.",
+    "no_similar": "No similar shows found.",
+    "similar": "Similar Shows",
+    "watch_trailer": "Watch Trailer",
+    "watch_trailer_aria": "Watch the official trailer",
+    "official_site": "Official Site",
+    "back_to_show": "Back to {{title}}",
+    "loading": "Loading...",
+    "not_found": "TV show not found",
+    "error": "Failed to load TV show details. Please try again.",
+    "tmdb_recommends": "🎬 TMDB Recommender"
+  },
+  "season": {
+    "title": "Season {{number}}",
+    "episodes": "Episodes",
+    "episode": "Episode {{number}}",
+    "air_date": "Air Date",
+    "runtime": "Runtime",
+    "overview": "Overview",
+    "no_episodes": "No episodes available for this season.",
+    "back_to_show": "Back to {{title}}"
+  },
+  "common": {
+    "view_all": "View All",
+    "read_more": "Read more",
+    "show_less": "Show less",
+    "retry": "Retry",
+    "search_results": "Search results for: {{query}}"
+  }
+}

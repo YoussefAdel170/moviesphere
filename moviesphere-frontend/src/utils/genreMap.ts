@@ -16,7 +16,7 @@ export const genreTranslationKeys: Record<number, string> = {
   9648: "genre.mystery",
   10749: "genre.romance",
   878: "genre.sciFi",
-  10770: "genre.tvMovie",
+  10770: "genre.tv_movie",
   53: "genre.thriller",
   10752: "genre.war",
   37: "genre.western",

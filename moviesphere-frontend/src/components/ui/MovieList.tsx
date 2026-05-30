@@ -14,12 +14,12 @@ type Movie = {
 
 type Props = {
   movies: Movie[];
+  mediaType?: "movie" | "tv";
 };
 
-export default function MoviesList({ movies }: Props) {
+export default function MoviesList({ movies, mediaType = "movie" }: Props) {
   const { t } = useTranslation("common");
   const { containerVariants, itemVariants } = useMoviesList();
-
   return (
     <motion.div
       className="
@@ -39,14 +39,14 @@ export default function MoviesList({ movies }: Props) {
       viewport={{ once: true, amount: 0.2 }}
       aria-label={t("grid_aria")}
     >
-      {movies.map((movie) => (
+      {movies.map((movie, idx) => (
         <motion.div
           key={movie.id}
           variants={itemVariants}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
-          <MovieCard {...movie} />
+          <MovieCard {...movie} index={idx} mediaType={mediaType} />
         </motion.div>
       ))}
     </motion.div>

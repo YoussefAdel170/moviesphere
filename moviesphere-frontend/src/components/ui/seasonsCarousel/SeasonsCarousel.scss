@@ -1,0 +1,81 @@
+.season-card {
+  text-align: center;
+  transition: transform 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  .season-image {
+    aspect-ratio: 2 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+    box-shadow: var(--shadow-sm);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .no-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-secondary);
+      color: var(--text-muted);
+      font-size: 3rem;
+    }
+  }
+
+  &:hover .season-image img {
+    transform: scale(1.05);
+  }
+
+  .season-info {
+    margin-top: 10px;
+    padding: 0 4px;
+
+    .season-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin: 0 0 4px;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .season-episodes,
+    .season-year {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 768px) {
+  .season-card {
+    .season-info .season-name {
+      font-size: 0.75rem;
+    }
+    .season-episodes,
+    .season-year {
+      font-size: 0.65rem;
+    }
+  }
+}

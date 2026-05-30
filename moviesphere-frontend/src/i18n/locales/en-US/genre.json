@@ -23,6 +23,7 @@
     "tv_movie": "TV Movie",
     "thriller": "Thriller",
     "war": "War",
-    "western": "Western"
+    "western": "Western",
+    "sciFi": "Science Fiction"
   }
 }

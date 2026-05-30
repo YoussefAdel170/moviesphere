@@ -14,6 +14,8 @@ import enErrorPage from "./locales/en-US/errorPage.json";
 import enSimilarMoviesPage from "./locales/en-US/similarMoviesPage.json";
 import enGenres from "./locales/en-US/genre.json";
 import enFilter from "./locales/en-US/filter.json";
+import enTv from "./locales/en-US/tv.json";
+import enHome from "./locales/en-US/home.json";
 
 // Arabic namespaces
 import arCommon from "./locales/ar/common.json";
@@ -27,6 +29,8 @@ import arErrorPage from "./locales/ar/errorPage.json";
 import arSimilarMoviesPage from "./locales/ar/similarMoviesPage.json";
 import arGenres from "./locales/ar/genre.json";
 import arFilter from "./locales/ar/filter.json";
+import arTv from "./locales/ar/tv.json";
+import arHome from "./locales/ar/home.json";
 
 import { DEFAULT_DIRECTION, DEFAULT_LANGUAGE } from "../constants/general";
 
@@ -47,6 +51,8 @@ i18n
         similarMoviesPage: enSimilarMoviesPage,
         genre: enGenres,
         filter: enFilter,
+        tv: enTv,
+        home: enHome,
       },
       ar: {
         common: arCommon,
@@ -60,6 +66,8 @@ i18n
         similarMoviesPage: arSimilarMoviesPage,
         genre: arGenres,
         filter: arFilter,
+        tv: arTv,
+        home: arHome,
       },
     },
     fallbackLng: DEFAULT_LANGUAGE,
@@ -75,8 +83,10 @@ i18n
       "similarMoviesPage",
       "genre",
       "filter",
+      "tv",
+      "home",
     ],
-    defaultNS: "common",
+    defaultNS: "home",
     interpolation: {
       escapeValue: false,
     },

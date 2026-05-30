@@ -22,13 +22,15 @@ type Review = {
 type Props = {
   reviews: Review[];
   loading?: boolean;
-  movieId: number;
+  id: number; // renamed from movieId to generic id
+  mediaType?: "movie" | "tv"; // optional, defaults to "movie"
 };
 
 export default function ReviewsSection({
   reviews,
   loading = false,
-  movieId,
+  id,
+  mediaType = "movie",
 }: Props) {
   const { t } = useTranslation("movieDetails");
 
@@ -45,6 +47,8 @@ export default function ReviewsSection({
 
   if (!reviews.length) return null;
 
+  const reviewsPath = `/${mediaType}/${id}/reviews`;
+
   return (
     <motion.div
       className="reviews-section"
@@ -56,7 +60,7 @@ export default function ReviewsSection({
         <div className="header-left">
           <h2>{t("reviews_title")}</h2>
         </div>
-        <Link to={`/movie/${movieId}/reviews`} className="view-all-link">
+        <Link to={reviewsPath} className="view-all-link">
           {t("view_all_reviews")} <FiExternalLink />
         </Link>
       </div>

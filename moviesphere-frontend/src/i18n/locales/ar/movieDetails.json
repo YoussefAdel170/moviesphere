@@ -53,5 +53,7 @@
   "all_reviews_title": "جميع آراء المستخدمين",
   "error_loading_reviews": "فشل تحميل الآراء. حاول مرة أخرى.",
   "reviews_powered_by": "الآراء مقدمة من",
-  "back_link": "العودة إلى {{title}}"
+  "back_link": "العودة إلى {{title}}",
+
+  "search_results_for": "نتائج البحث عن:"
 }

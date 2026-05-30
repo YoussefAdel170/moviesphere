@@ -1,0 +1,241 @@
+// HeroSection.scss
+
+.hero-section {
+  position: relative;
+  height: 70vh;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+
+  // Light mode gradient (default)
+  background: linear-gradient(140deg, #1e1b4b 0%, #4338ca 45%, #7c3aed 100%);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &::before {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -150px;
+    background: radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.35) 0%,
+      transparent 70%
+    );
+    animation: orb-drift 12s ease-in-out infinite alternate;
+  }
+  &::after {
+    width: 400px;
+    height: 400px;
+    bottom: -120px;
+    right: -80px;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.3) 0%,
+      transparent 70%
+    );
+    animation: orb-drift 16s ease-in-out infinite alternate-reverse;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 10, 40, 0.45);
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 760px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 99px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+
+      svg {
+        color: #a78bfa;
+      }
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 500px;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        color: #1e1b4b;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 11px 24px;
+        border-radius: 99px;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+        }
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 11px 24px;
+        border-radius: 99px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        &:hover {
+          background: rgba(255, 255, 255, 0.18);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.45);
+    animation: bounce 2s ease-in-out infinite;
+    font-size: 1.4rem;
+    line-height: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    &:hover {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+}
+
+// Dark mode overrides
+.dark .hero-section {
+  background: linear-gradient(140deg, #0f0c29 0%, #1e1a4a 45%, #2d1b69 100%);
+  &::before {
+    background: radial-gradient(
+      circle,
+      rgba(109, 40, 217, 0.3) 0%,
+      transparent 70%
+    );
+  }
+  &::after {
+    background: radial-gradient(
+      circle,
+      rgba(67, 56, 202, 0.25) 0%,
+      transparent 70%
+    );
+  }
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.55);
+  }
+  .hero-content .btn-primary {
+    background: #6d28d9;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(109, 40, 217, 0.4);
+    &:hover {
+      background: #7c3aed;
+      box-shadow: 0 8px 28px rgba(109, 40, 217, 0.5);
+    }
+  }
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 55vh;
+    min-height: 380px;
+    .hero-content {
+      gap: 1rem;
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        .btn-primary,
+        .btn-ghost {
+          width: 100%;
+          max-width: 260px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

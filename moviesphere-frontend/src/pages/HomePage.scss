@@ -1,0 +1,19 @@
+.home-page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  padding-top: 60px;
+
+  // Carousel sections container
+  .carousel-section {
+    padding: 0rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    .carousel-section {
+      padding: 1.75rem 1rem 1rem;
+    }
+  }
+}

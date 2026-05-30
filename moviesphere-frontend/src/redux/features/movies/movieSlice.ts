@@ -1,9 +1,11 @@
-// src/redux/features/movies/movieSlice.ts
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import {
   fetchPopularMovies,
   searchMovies,
   fetchMoviesWithFilters,
+  fetchTrendingAll,
+  fetchUpcomingMovies,
+  fetchTrendingMovies,
 } from "./moviesThunks";
 
 export type FilterState = {
@@ -16,6 +18,8 @@ export type FilterState = {
 
 type MoviesState = {
   movies: any[];
+  trendingAll: any[];
+  upcomingMovies: any[];
   loading: boolean;
   error: string | null;
   pages: number;
@@ -38,6 +42,8 @@ const resetFilterState: FilterState = {
 
 const initialState: MoviesState = {
   movies: [],
+  trendingAll: [],
+  upcomingMovies: [],
   loading: false,
   error: null,
   pages: 0,
@@ -63,19 +69,14 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    // Set Current Page
     setPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-
-    // Dark Mode
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
       localStorage.setItem("darkMode", state.darkMode.toString());
       localStorage.setItem("theme", state.darkMode ? "dark" : "light");
     },
-
-    // Language
     setLanguage: (state, action: PayloadAction<"en-US" | "ar">) => {
       state.language = action.payload;
       localStorage.setItem("language", action.payload);
@@ -83,52 +84,35 @@ const moviesSlice = createSlice({
       state.filters.language = action.payload;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-
-    // Clear Error
     clearError: (state) => {
       state.error = null;
     },
-
-    // Filter By Genre
     setGenresFilter: (state, action: PayloadAction<number[]>) => {
       state.filters.genres = action.payload;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-
-    // Filter by Year
     setYearRangeFilter: (state, action: PayloadAction<[number, number]>) => {
       state.filters.yearRange = action.payload;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-    // Filter By voting
     setVoteAverageFilter: (state, action: PayloadAction<number>) => {
       state.filters.voteAverage = action.payload;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-
-    // Sort By
     setSortByFilter: (state, action: PayloadAction<string>) => {
       state.filters.sortBy = action.payload;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-
-    // Reset Filters
     resetFilters: (state) => {
       state.filters = resetFilterState;
       localStorage.setItem("filters", JSON.stringify(state.filters));
     },
-
-    // Set Search Query
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
-
-    // Set Debounced Query
     setDebouncedQuery: (state, action: PayloadAction<string>) => {
       state.debouncedQuery = action.payload;
     },
-
-    // Clear Search
     clearSearch: (state) => {
       state.searchQuery = "";
       state.debouncedQuery = "";
@@ -136,7 +120,6 @@ const moviesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Popular
       .addCase(fetchPopularMovies.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -150,7 +133,6 @@ const moviesSlice = createSlice({
         state.loading = false;
         state.error = (action.payload as string) || "Failed to fetch movies";
       })
-      // Search
       .addCase(searchMovies.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -165,7 +147,6 @@ const moviesSlice = createSlice({
         state.loading = false;
         state.error = (action.payload as string) || "Search failed";
       })
-      // Discover (filters)
       .addCase(fetchMoviesWithFilters.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -179,6 +160,46 @@ const moviesSlice = createSlice({
         state.loading = false;
         state.error =
           (action.payload as string) || "Failed to fetch filtered movies";
+      })
+      .addCase(fetchTrendingAll.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTrendingAll.fulfilled, (state, action) => {
+        state.loading = false;
+        state.trendingAll = action.payload.results?.slice(0, 10) || [];
+      })
+      .addCase(fetchTrendingAll.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          (action.payload as string) || "Failed to fetch trending content";
+      })
+      .addCase(fetchUpcomingMovies.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.upcomingMovies = action.payload.results?.slice(0, 10) || [];
+      })
+      .addCase(fetchUpcomingMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          (action.payload as string) || "Failed to fetch upcoming movies";
+      })
+      .addCase(fetchTrendingMovies.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTrendingMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.movies = action.payload.results || [];
+        state.pages = action.payload.total_pages || 0;
+      })
+      .addCase(fetchTrendingMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          (action.payload as string) || "Failed to fetch trending movies";
       });
   },
 });

@@ -1,17 +1,20 @@
+// src/pages/TvShowsPage.tsx
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useMoviesPage } from "../hooks/useMoviesPage";
+import { useTvShowsPage } from "../hooks/tv/useTvShowsPage";
 import Pagination from "../components/ui/pagination/Pagination";
 import MoviesList from "../components/ui/MovieList";
 import EmptyMoviesState from "../components/ui/emptyMoviesState/EmptyMoviesState";
 import SkeletonGrid from "../components/ui/SkeletonGrid";
 import ErrorPage from "./ErrorPage";
-import MovieFilters from "../components/ui/filters/MovieFilters";
+import TvFilters from "../components/ui/filters/TvFilters";
 
-export default function MoviesPage() {
-  const { t } = useTranslation(["common", "movieDetails"]);
+export default function TvShowsPage() {
+  const { t } = useTranslation("tv");
+
   const {
-    movies,
+    shows,
     loading,
     error,
     pages,
@@ -19,27 +22,33 @@ export default function MoviesPage() {
     page,
     handlePageChange,
     clearSearch,
-  } = useMoviesPage();
+  } = useTvShowsPage();
 
   if (loading) return <SkeletonGrid />;
   if (error) return <ErrorPage message={error} />;
-  if (!movies || movies.length === 0)
+  if (!shows || shows.length === 0)
     return <EmptyMoviesState onClearSearch={clearSearch} />;
 
+  const normalizedShows = shows.map((show) => ({
+    ...show,
+    title: show.name,
+  }));
+
   return (
-    <div className="movies-page mt-20" id="main-content">
+    <div className="tv-shows-page mt-20" id="main-content">
       {query && (
         <h2
           className="text-center text-xl mb-4"
           style={{ color: "var(--text-primary)" }}
         >
-          {t("movieDetails:search_results_for")}{" "}
-          <span className="font-bold">{query}</span>
+          {t("common.search_results", { query })}
         </h2>
       )}
+
       <div className="flex px-6">
-        <MovieFilters />
+        <TvFilters />
       </div>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={query + page}
@@ -48,9 +57,10 @@ export default function MoviesPage() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <MoviesList movies={movies} />
+          <MoviesList movies={normalizedShows} mediaType="tv" />
         </motion.div>
       </AnimatePresence>
+
       {pages > 1 && (
         <Pagination
           currentPage={page}

@@ -10,6 +10,10 @@ import { useEffect } from "react";
 import { syncLanguage } from "./i18n/languageSync";
 import CastPage from "./pages/CastPage";
 import ReviewsPage from "./pages/ReviewsPage";
+import TvDetailsPage from "./pages/TvDetailsPage";
+import PopularTvPage from "./pages/PopularTvPage";
+import TvShowsPage from "./pages/TvShowsPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const { direction, language } = useAppSelector((state) => state.movies);
@@ -32,15 +36,23 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<MoviesPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
         <Route path="/movie/:id" element={<MovieDetailsPage />} />
         <Route path="/movie/:id/similar" element={<SimilarMoviesPage />} />
+        <Route path="/tv/:id/similar" element={<SimilarMoviesPage />} />
         <Route
           path="/movie/:id/ai-recommend"
           element={<AIRecommendationsPage />}
         />
         <Route path="/movie/:id/cast" element={<CastPage />} />
         <Route path="/movie/:id/reviews" element={<ReviewsPage />} />
+        <Route path="/tv/:id/reviews" element={<ReviewsPage />} />
+
+        {/* Tv */}
+        <Route path="/tv" element={<TvShowsPage />} />
+        <Route path="/tv/popular" element={<PopularTvPage />} />
+        <Route path="/tv/:id" element={<TvDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );

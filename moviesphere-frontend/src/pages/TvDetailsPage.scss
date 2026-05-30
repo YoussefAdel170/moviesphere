@@ -1,0 +1,476 @@
+// src/pages/TvDetailsPage.scss
+
+.tv-details {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+
+  /* ================= HERO ================= */
+  .hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center 30%;
+    height: 70vh;
+    min-height: 520px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4),
+      var(--bg-primary) 90%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    width: 100%;
+  }
+
+  /* ================= ACTION BUTTONS ================= */
+  .action-buttons {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 10000;
+    flex-wrap: wrap;
+
+    .back-button,
+    .home-button,
+    .homepage-button,
+    .trailer-button {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 40px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      text-decoration: none;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: translateX(-3px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+      }
+      &:active {
+        transform: scale(0.96);
+      }
+    }
+
+    .trailer-button:hover svg {
+      transform: scale(1.1);
+    }
+  }
+
+  /* ================= HERO INFO ================= */
+  .hero-info {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+
+    .poster-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      width: clamp(140px, 18vw, 220px);
+    }
+
+    .poster {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .details {
+      flex: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 1rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        row-gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        span {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(4px);
+          padding: 4px 12px;
+          border-radius: 40px;
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: white;
+          transition: transform 0.2s;
+          &:hover {
+            transform: translateY(-1px);
+          }
+        }
+      }
+
+      .genres {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 1rem;
+
+        .genre-badge {
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(4px);
+          padding: 4px 12px;
+          border-radius: 30px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: white;
+          transition: all 0.2s ease;
+        }
+      }
+    }
+  }
+
+  /* ================= MAIN CONTENT ================= */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ================= OVERVIEW ================= */
+  .overview {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-secondary);
+      }
+    }
+
+    p {
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+  }
+
+  /* ================= INFO GRID ================= */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+
+    .info-card {
+      background: var(--surface-secondary);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: 0.2s;
+
+      svg {
+        font-size: 2rem;
+        color: var(--accent-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      p {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-primary);
+        box-shadow: var(--shadow-md);
+      }
+    }
+  }
+
+  /* ================= PRODUCTION ================= */
+  .production {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .companies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+
+      .company {
+        width: 100px;
+        text-align: center;
+
+        img {
+          max-width: 80px;
+          max-height: 60px;
+          object-fit: contain;
+          transition: 0.2s;
+        }
+
+        span {
+          font-size: 0.75rem;
+          color: var(--text-muted);
+        }
+
+        &:hover img {
+          filter: brightness(1.1);
+        }
+      }
+    }
+  }
+
+  /* ================= SIMILAR ================= */
+  .similar-movies {
+    margin-top: 4rem;
+
+    .similar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .view-more-link {
+        color: var(--accent-primary);
+        font-weight: 500;
+        transition: 0.2s;
+
+        &:hover {
+          transform: translateX(4px);
+        }
+      }
+    }
+
+    .similar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  /* ================= RESPONSIVE (MOBILE) ================= */
+  @media (max-width: 768px) {
+    .hero-section {
+      height: auto;
+      min-height: 480px;
+    }
+
+    .hero-content {
+      padding: 1.5rem;
+    }
+
+    .action-buttons {
+      top: 70px;
+      left: 12px;
+      gap: 8px;
+
+      .back-button,
+      .home-button,
+      .homepage-button,
+      .trailer-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        gap: 4px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    .hero-info {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .poster-wrapper {
+      width: 160px;
+      margin: 0 auto;
+    }
+
+    .details {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .tagline {
+        font-size: 1rem;
+      }
+      .meta > span {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+      }
+      .genres .genre-badge {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+      }
+    }
+
+    .content {
+      padding: 1rem;
+    }
+
+    .overview h2 {
+      font-size: 1.4rem;
+    }
+    .overview p {
+      font-size: 0.95rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .info-card {
+      padding: 1rem;
+      svg {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .production {
+      h2 {
+        font-size: 1.4rem;
+      }
+      .companies {
+        gap: 1rem;
+        justify-content: center;
+        .company {
+          width: 70px;
+          img {
+            max-width: 50px;
+          }
+          span {
+            font-size: 0.65rem;
+          }
+        }
+      }
+    }
+
+    .similar-movies .similar-header h2,
+    .cast-section h2,
+    .ai-recommendations .ai-header h2,
+    .horizontal-carousel .carousel-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .horizontal-carousel .carousel-item {
+      width: 150px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .action-buttons {
+      top: 65px;
+      left: 8px;
+      gap: 6px;
+      .back-button,
+      .home-button,
+      .homepage-button,
+      .trailer-button {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+    }
+
+    .poster-wrapper {
+      width: 130px;
+    }
+
+    .details h1 {
+      font-size: 1.5rem;
+    }
+
+    .similar-movies .similar-header .view-more-link,
+    .cast-header .view-all-link,
+    .ai-header .view-all-link {
+      padding: 4px 10px;
+      font-size: 0.7rem;
+    }
+  }
+
+  /* ================= STATES ================= */
+  .details-skeleton,
+  .details-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+}
+
+.tv-details .hero-info .details .meta span {
+  transition: all 0.2s ease;
+}
